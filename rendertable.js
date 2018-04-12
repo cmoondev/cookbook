@@ -189,13 +189,13 @@ function renderTable(array) {
 		var row = document.createElement("tr");
 		var cells = [];
 
-		for( var j = 0; j <= 3; j++) {
+		for( var j = 0; j <= 2; j++) {
 			cells[j] = document.createElement("td");
 		}
 
-		cells[1].innerHTML = array[i][0];
-		cells[2].appendChild(parseIng(array[i][1]));
-		cells[3].appendChild(parseFEP(array[i][2]));
+		cells[0].innerHTML = array[i][0];
+		cells[1].appendChild(parseIng(array[i][1]));
+		cells[2].appendChild(parseFEP(array[i][2]));
 		for( var j = 0; j < cells.length; j++) {
 			row.appendChild(cells[j]);
 		}
