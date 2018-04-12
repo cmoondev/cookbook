@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Survivalist Cookbook</title>
+	<link rel="stylesheet" type="text/css" href="layout.css"/>
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+</head>
+<body>
+	<div id="rFloater">
+		<div id="filters">
+			<input type="text" id="filterFood"		placeholder="Search for food" />
+			<input type="text" id="filterIng"		placeholder="Search for ingredient" />
+			<input type="text" id="filterFEP"	placeholder="Search for FEP (e. g. &#34;str +2 1&#34; or &#34;int 3&#34;)" />
+
+			<div class="button_halfwide" id="btnSearch">Search</div>
+			<div class="button_halfwide" id="btnReset">Clear all</div>
+		</div>
+
+	</div>
+	<div id="data-headers">
+		<div class="hdr">Icon?</div>
+		<div class="hdr">Food</div>
+		<div class="hdr">Ingredients</div>
+		<div class="hdr">FEP</div>
+	</div>
+	<div id="data-container">
+		<table id="data" class="sortable">
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+	<script type="text/javascript" src="options.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="rendertable.js"></script>
+	<script type="text/javascript" src="sorttable.js"></script>
+</body>
+</html>

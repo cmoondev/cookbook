@@ -1,0 +1,105 @@
+/*
+#AAA - mono stroke
+#888 - mono tip
+
+#421 - fill
+#631 - stroke
+#D62 - accent
+*/
+
+body 
+{
+	background-color: #000;
+	color: #DDD;
+}
+
+body *
+{
+	color: #DDD;
+}
+
+#data-headers
+{
+	background-color: #000;
+}
+
+
+#data th 
+{
+	color: color: #FFF !important;
+}
+
+#data-headers .hdr:hover
+{
+	color: #D62 !important;
+}
+
+#data tbody tr:nth-child(even)
+{
+	background-color:#111;
+}
+
+#data tr:hover td
+{
+	background-color: #631;
+	color: #FFF;
+}
+
+.dropdownList
+{
+	background-color: #000 !important;
+	border: #888 1px solid !important;
+}
+
+.dropdownList div:hover 
+{
+	background-color: #631;
+}
+
+#filters>*
+{
+	border-bottom: #888 1px solid;
+}
+
+#filters>*:focus {
+	border-bottom: #AAA 1px solid;
+}
+
+#filters input::-webkit-input-placeholder 
+{
+	color: #888;
+}
+
+#filters input :-ms-input-placeholder  
+{
+	color: #888;
+}
+
+#lot-details *
+{
+	color: #BBB;
+}
+
+#lot-details h4
+{
+	color: #FFF;
+}
+
+#lot-price
+{
+	color: #D62 !important;
+}
+
+#mapContainer 
+{
+	background: url("gfx/mapBG_dark.png") no-repeat;
+}
+
+	#mapSVG .SVGstand {
+		fill: #876;
+	}
+	
+	#mapSVG .SVGmarker {
+		fill: #FED;
+		stroke: #000;
+	}

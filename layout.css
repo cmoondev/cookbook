@@ -1,0 +1,259 @@
+body
+{
+	background-color: #000;
+}
+
+body *
+{
+	background: none;
+	font-family: sans-serif;
+}
+
+#data-headers
+{
+	position: fixed;
+	z-index: 2;
+	overflow: hidden;
+	top: 0pt;
+	left: 4px;
+	width: 700px;	
+	height: 26px;
+}
+
+	#data-headers *
+	{
+		display: inline-block;
+		height: 26px;
+		float: left;
+	}
+	
+	#data-headers .hdr
+	{
+		cursor: pointer;
+		text-align: center !important;
+		font-size: 11pt;
+		padding-top: 3pt;
+	}
+
+	#data-headers .sorttable_sorted, #data-headers .sorttable_sorted_reverse
+	{
+		font-weight: bold;
+	}
+
+	#data-headers span
+	{
+		display: none;
+	}
+
+
+#data-container 
+{
+	position: absolute;
+	left: 4px;
+	top: 26px;
+	width: 700px;
+	margin-right: 300px;
+}
+
+#data
+{
+	width: 100%;
+	border: none;
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	font-size: 10.5pt;
+}
+
+#data *
+{
+	margin: 0px;
+	padding: 0px;
+	line-height: 120%;
+}
+
+#data td:nth-child(1)
+{
+	display: inline-block;
+	max-width: 32px;
+	max-height: 32px;
+	overflow: hidden;
+	text-align: center;
+}
+
+#data img
+{
+	display: inline-block;
+	max-width: 32px;
+}
+
+#data tbody td *
+{
+	vertical-align: middle;
+}
+
+#data tr td
+{
+	height: 32px;
+}
+
+#data td:nth-child(1), #data-headers div:nth-child(1)
+{
+	width: 32px;
+	/*display: none;*/
+}
+
+#data-headers div:nth-child(1)
+{
+	display: none;
+}
+
+#data td:nth-child(2)
+{
+	width: 160px;
+	/*text-align: right;*/
+	word-spacing: -0.1em;
+	letter-spacing: -0.04em;
+	line-height: 12px;
+}
+
+#data-headers div:nth-child(2)
+{
+	width: 188px;
+}
+
+#data td:nth-child(3), #data-headers div:nth-child(3)
+{
+	width: 230px;
+	/*text-align: center;*/
+}
+
+#data td:nth-child(4), #data-headers div:nth-child(4)
+{
+	width: 277px;
+}
+
+#data .fep-list {
+	width: 277px;
+	overflow-y: hidden;
+}
+
+#data .fep-single
+{
+	width: 46px !important; 
+	height: 32px !important; 
+	float: left;
+	vertical-align: middle !important;
+	text-align: center;
+	}
+
+.fep-single *{
+	word-spacing: -0.35em;
+	letter-spacing: -0.090em;
+	display: inline-block;
+	font-family: monospace;
+}
+
+.fep-single .fep-name{
+	font-size: 9pt;
+	color: #444 !important;
+}
+
+.fep-single .fep-value{
+	position: relative;
+	font-size: 10pt;
+	top: -4px;
+	color: #000  !important;
+}
+
+#data .ing-single
+{
+	float: left;
+	vertical-align: middle !important;
+	word-spacing: -0.15em;
+	letter-spacing: -0.025em;
+	margin-left: 2px;
+	line-height: 12px;
+}
+
+/* ------------------------------------*/
+/* ----------- Side panel ------------ */
+/* ------------------------------------*/
+
+#rFloater 
+{
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	z-index: 3;
+	padding: 4px;
+	width: 300px;
+	height: 100%;
+	font-size: 10.5pt;
+}
+
+#filters 
+{
+	z-index: 3;
+}
+
+#filters *
+{
+	margin: 0px; 
+	padding: 0px;
+	z-index: 4;	
+	border: none;
+	outline: none;
+	height: 18px;
+	margin-top: 1px;
+}
+
+#filters>*
+{
+	border-bottom: #000 1px solid;
+}
+
+.dropdownButton
+{
+	position: absolute;
+	z-index: 5;
+	width: 20px;
+	text-align: center;
+	cursor: pointer;
+	border: none !important;
+	font-size: 13.0pt;	
+}
+
+.dropdownList
+{
+	position: absolute;
+	z-index: 99 !important;
+	padding: 4px !important;
+	left: -204px;
+	width: 192px;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+.dropdownList div
+{	
+	height: auto !important;
+	vertical-align: middle;
+	border: none !important;
+	cursor: pointer;	
+}
+
+#filterFood, #filterIng, #filterFEP
+{
+	width: 296px;
+}
+
+#filters .button_halfwide
+{
+	width: 128px;
+	display: inline-block;
+	margin: 9px;
+	text-align: center;
+	height: 22px;
+	cursor: pointer;
+}
