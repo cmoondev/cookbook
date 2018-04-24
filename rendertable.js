@@ -1,5 +1,6 @@
 var displayData = [];
 document.onLoad = main();
+var hideIndex = 6;
 
 
 function formatVal(val, format) {
@@ -51,6 +52,14 @@ function eventColor(key) {
 	return result;
 }
 
+function sumFEP(objFEP) {
+	var result = 0;
+	for(var k in objFEP) {
+		result += objFEP[k];
+	}
+	return result;
+}
+
 function parseFEP(objFEP) {
 	var result = document.createElement("div");
 	result.className = "fep-list";
@@ -79,7 +88,6 @@ function parseIng(arrIng) {
 	for( var k1 = 0; k1 < arrIng.length; k1++) {
 		// if( arrIng[k1] == "Mix") continue;
 
-
 		var spnIn = document.createElement("span");
 		spnIn.className = "ing-name";
 		spnIn.innerHTML = arrIng[k1];
@@ -106,6 +114,7 @@ function resetSorted() {
 }
 
 function filterData(array) {
+	// var hideIndex = array[0].length-1;
 	var filterFood	= document.getElementById("filterFood").value;
 	var filterIng	= document.getElementById("filterIng").value;
 	var filterFEP	= document.getElementById("filterFEP").value;
@@ -122,13 +131,13 @@ function filterData(array) {
 	}
 
 	for( var i = 0; i < array.length; i++) {
-		array[i][4] = false; //unhide every single row
+		array[i][hideIndex] = false; //unhide every single row
 		
 		//filter by name
 		if( filterFood.length > 0 ) {
 			var itemName = array[i][0];
 			if( itemName.toUpperCase().indexOf(filterFood.toUpperCase()) == -1 ) {
-				array[i][4] = true;
+				array[i][hideIndex] = true;
 				continue;
 			}
 		}
@@ -144,7 +153,7 @@ function filterData(array) {
 				}
 			}
 			if( noIngFound ){
-				array[i][4] = true;
+				array[i][hideIndex] = true;
 				continue;
 			}
 		}
@@ -164,7 +173,7 @@ function filterData(array) {
 			}
 
 			if( noFEPFound ) {
-				array[i][4] = true;
+				array[i][hideIndex] = true;
 			}
 		}
 	}
@@ -185,20 +194,22 @@ function renderTable(array) {
 	var tbody = table.getElementsByTagName("tbody")[0];
 	while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
 	for( var i = 0; i < array.length; i++) {
-		if( array[i][array[i].length-1] == true ) continue;
+		if( array[i][hideIndex] == true ) continue;
 		var row = document.createElement("tr");
 		var cells = [];
 
-		for( var j = 0; j <= 2; j++) {
+		for( var j = 0; j <= 4; j++) {
 			cells[j] = document.createElement("td");
 		}
-
+		var totalFEPs = sumFEP(array[i][2]);
 		cells[0].innerHTML = array[i][0];
 		cells[1].appendChild(parseIng(array[i][1]));
 		cells[2].appendChild(parseFEP(array[i][2]));
 		for( var j = 0; j < cells.length; j++) {
 			row.appendChild(cells[j]);
 		}
+		cells[3].innerHTML = array[i][4];
+		cells[4].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs / array[i][4], "d2fd");
 		// row.addEventListener("mouseover", highlight);
 		row.id = i;
 		tbody.appendChild(row);
@@ -237,12 +248,6 @@ function processQuery() {
 	if( optionlist.debug ) opts.debug = optionlist.debug;
 	if( optionlist.theme == "dark" ) opts.theme = "dark";   
 }
-
-/*
-function resizeDetailsDiv() {
-	document.getElementById("lot-details").style.maxHeight = Math.max(48, window.innerHeight-660) + "px";
-}
-*/
 
 function addDropdownToInput(inputField, list) {
 	var currentWidth = inputField.clientWidth;
@@ -312,74 +317,21 @@ function main() {
 		});
 	document.getElementById("btnReset").addEventListener("click", resetFields);
 	document.getElementById("btnSearch").addEventListener("click", refreshView);
-	/*
-	window.addEventListener("resize", resizeDetailsDiv);
-	addDropdownToInput(document.getElementById("filterGoods"), ItemReferenceList);
-	resizeDetailsDiv();
-
-	*/
 	addDropdownToInput(document.getElementById("filterFEP"), evBaseName);
-	loadData(dataset);
+	loadDataFromTables();
 	refreshView();
 }
 
-function loadData(src) {
-	displayData = src.slice(0);
-	for( var i = 0; i < displayData.length; i++) {
-		displayData[i][displayData[i].length] = false;
+function loadDataFromTables() { //displayData generation
+	for( var food_index = 0; food_index < gl_food.length; food_index++) {
+		if( gl_food[food_index][1].length > 0 ) {
+			for (var j = 0; j < gl_fepmod.length; j++) {
+				if ( gl_fepmod[j][0] == gl_food[food_index][0] ) {
+					displayData.push([gl_fepmod[j][0], gl_fepmod[j][1], gl_fepmod[j][2], gl_food[food_index][3], gl_food[food_index][4], false]);
+				}
+			}
+		} else {
+			displayData.push([gl_food[food_index][0], gl_food[food_index][1], gl_food[food_index][2], gl_food[food_index][3], gl_food[food_index][4], false]);
+		}
 	}
-}
-
-function highlight() {
-	var id = this.id;
-	var x = data[id][10];
-	var y = data[id][11];
-
-	if (map	== undefined)
-		var map = document.getElementById('mapSVG');
-
-	var marker = mapSVG.getElementById('mapMarker');
-	if (marker == undefined) {
-		marker = document.createElementNS(ns, 'circle');
-		marker.setAttribute('r', 5);
-		marker.setAttribute('class', "SVGmarker");
-		marker.setAttribute('id', 'mapMarker');
-		map.appendChild(marker);
-	}
-	marker.setAttribute('cx', (x-fixx)*modx+offx);
-	marker.setAttribute('cy', (y-fixy)*mody+offy);
-	
-	detailsToLot(id);
-}
-
-function detailsToLot(id){
-	var lot = document.getElementById("lot");
-
-	var stringProduct = data[id][1] + (data[id][3] ? " Q" + data[id][3] : "");
-	var stringProductLeft = data[id][4] + " left";
-	var stringPrice = data[id][6];
-	if( data[id][8] && data[id][8] != "Any") stringPrice += " Q" + data[id][8];
-	if( data[id][9] && data[id][9] > 1 ) stringPrice += " × " + data[id][9];
-	
-	var lprimg = lot.querySelector("#lot-product-image");
-	while (lprimg.firstChild) lprimg.removeChild(lprimg.firstChild);
-	var img = document.createElement("img");
-	if ( !opts.debug ) img.src = (basicURL + data[id][0]).replace("/gems/gemstone", "/gems/any");
-	img.alt = data[id][0];
-	lprimg.appendChild(img);
-
-	lot.querySelector("#lot-product").innerHTML = stringProduct;
-	lot.querySelector("#lot-left").innerHTML = stringProductLeft;
-	lot.querySelector("#lot-details").innerHTML = (parseDetails(data[id][2])).innerHTML;
-
-	var lpriceimg = lot.querySelector("#lot-price-image");
-	while (lpriceimg.firstChild) lpriceimg.removeChild(lpriceimg.firstChild);
-	var pimg = document.createElement("img");
-	if ( !opts.debug ) pimg.src = (basicURL + data[id][5]).replace("/gems/gemstone", "/gems/any");
-	pimg.alt = data[id][5];
-	lpriceimg.appendChild(pimg);
-
-	lot.querySelector("#lot-price").innerHTML = stringPrice;
-	lot.querySelector("#lot-pricedetails").innerHTML = data[id][7];
-	lot.querySelector("#lot-timestamp").innerHTML = data[id][12];
 }

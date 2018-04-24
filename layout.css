@@ -7,6 +7,7 @@ body *
 {
 	background: none;
 	font-family: sans-serif;
+
 }
 
 #data-headers
@@ -69,7 +70,6 @@ body *
 {
 	margin: 0px;
 	padding: 0px;
-	line-height: 120%;
 }
 
 #data tbody td *
@@ -85,15 +85,18 @@ body *
 
 #data-headers div:nth-child(1)
 {
-	width: 169px;
+	width: 140px;
 }
 
 #data td:nth-child(1)
 {
-	width: 169px;
+	width: 140px;
 	word-spacing: -0.1em;
 	letter-spacing: -0.04em;
-	line-height: 12px;
+	line-height: 13px;
+	font-size: 10.5pt;
+	text-align: center;
+
 }
 
 #data td:nth-child(2), #data-headers div:nth-child(2)
@@ -101,19 +104,34 @@ body *
 	width: 230px;
 }
 
+#data td:nth-child(2)
+{
+	width: 230px;
+	line-height: 10pt;
+	font-size: 9pt;
+	padding-left: 8px !important;
+}
+
 #data td:nth-child(3), #data-headers div:nth-child(3)
 {
-	width: 325px;
+	width: 290px;
+}
+
+#data td:nth-child(4), #data-headers div:nth-child(4),
+#data td:nth-child(5), #data-headers div:nth-child(5)
+{
+	width: 32px;
+	text-align: center;
 }
 
 #data .fep-list {
-	width: 325px;
+	width: 290px;
 	overflow-y: hidden;
 }
 
 #data .fep-single
 {
-	width: 46px !important; 
+	width: 36px !important; 
 	height: 32px !important; 
 	float: left;
 	vertical-align: middle !important;
@@ -128,7 +146,7 @@ body *
 }
 
 .fep-single .fep-name{
-	font-size: 9pt;
+	font-size: 8.5pt;
 	color: #444 !important;
 }
 

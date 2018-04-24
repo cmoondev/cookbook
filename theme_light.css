@@ -35,7 +35,7 @@ body *
 
 #data tbody tr:nth-child(even)
 {
-	background-color:#eee;
+	background-color:#EAEAEA;
 }
 
 #data tr:hover td
@@ -73,32 +73,3 @@ body *
 {
 	color: #AAA;
 }
-
-#lot-details *
-{
-	color: #444;
-}
-
-#lot-details h4
-{
-	color: #000;
-}
-
-#lot-price
-{
-	color: #06A !important;
-}
-
-#mapContainer 
-{
-	background: url("gfx/mapBG.png") no-repeat;
-}
-
-	#mapSVG .SVGstand {
-		fill: #06A;
-	}
-	
-	#mapSVG .SVGmarker {
-		fill: #ACD;
-		stroke: #000;
-	}
