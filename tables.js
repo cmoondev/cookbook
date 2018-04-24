@@ -74,6 +74,9 @@ var gl_mushroom = [
 	"Field Blewits",
 	"Giant Puffball",
 	"Parasol Mushroom",
+	"Parboiled Morels",
+	"Dried Morels",
+	"Troll Mushrooms",
 	"Yellowfeet"
 ];
 
@@ -271,13 +274,16 @@ var go_inglists = {
 
 //food list: name, ings, basefep nrj, glut
 var gl_food = [
+//CONSTA
 	["Kvann",	[],	{prc2: 1}, 250.0, 1.0],
 	["Quince", [], {wil1 :0.5,}, 80.0, 2.0], 
 	["Cave Slime", [], {psy2 :1.0, str2 :1.0, con2 :1.0,}, 200.0, 0.7], 
 	["Cavebulb", [], {psy1 :1.0,}, 175.0, 2.0], 
 	["Stalagoom", [], {wil2 :2.0, con2 :1.0,}, 200.0, 0.5], 
+	["Spitroast Wood Grouse", [], {dex1: 1.0, con2: 0.5, csm1: 0.5}, 250.0, 2.0], 
+	["Roast Wood Grouse", [], {dex1: 1.0, con2: 0.5}, 250.0, 4.0], 
 
-//OLD CONSTA START
+//OLD CONSTA 
 	["Abbaye", [], {int1: 5, prc1: 3, }, 100, 4],
 	["Almond", [], {wil1: 0.5, }, 80, 2],
 	["Ant Empress", [], {dex1: 5, psy1: 4, }, 1000, 1],
@@ -510,8 +516,7 @@ var gl_food = [
 	["Wonderful Wilderness Wurst", [], {wil2: 12, psy1: 6, psy2: 6, }, 1200, 4],
 	["Yellowfeet", [], {str1: 1, int1: 1, }, 125, 1],
 	["Zamorano", [], {str2: 3, agi2: 3, psy2: 3, }, 100, 4],
-//OLD CONSTA END
-
+//VARIA
 	["Autumn Steak", ["meat", "mushroom", "salad", ], {con1: 4, prc1: 2, prc2: 1}, 800, 3],
 	["Beeted Bird Breast", ["poultry", "fat", ], {con1: 4, csm1: 4, psy1: 4}, 750, 5],
 	["Big Bear Banger", ["pork", ], {str1: 6, str2: 4}, 900, 10],
@@ -639,7 +644,8 @@ var gl_fepmod = [
 	["Strawberries in Cream", [], {int2: 2, csm1: 2, wil1: 2, }], 
 	["Turnip Fries", [], {int1: 2, prc2: 2, }], 
 	["Honeybun", [], {agi1: 4, }],
-	["Autumn Steak", ["Boreworm", "Beetroot Leaves", "Black Trumpets"], {prc2 :0.6, prc1 :2.0, con1 :3.8, psy1 :0.375,}], 
+	["Autumn Steak", ["Boreworm", "Beetroot Leaves", "Black Trumpets"], {prc2 :0.6, prc1 :2.0, con1 :3.8, psy1 :0.375,}],
+	["Autumn Steak", ["Bay Bolete", "Beetroot Leaves", "Bear"], {prc2: 1.25, prc1: 2.0, con1: 2.0, csm2: 0.625, str1: 3.75}], 
 // OLD DATA. SHOULD BE REMOVED
 	["Encumbered Roast", ["Badger"], {str2: 3,	wil1: 2,	prc1: 1.4,	con1: 1.4}], 
 	["Encumbered Roast", ["Bat"], {str2: 3,	wil1: 2,	prc1: 2.2}], 
@@ -850,6 +856,8 @@ var gl_fepmod = [
 	["Carrot Cake", ["Cowsmilk", "Barley Flour"], {prc1: 4.724, str1: 1.838, con1: 3.061}], 
 	["Carrot Cake", ["Barley Flour"], {prc1: 6.297, str1: 2.448}], 
 	["Carrot Cake", ["Sheepsmilk", "Barley Flour"], {prc1: 4.724, str1: 1.839, csm1: 3.063}], 
+	["Carrot Cake", ["Barley Flour", "Aurochs Milk"], {prc1: 4.095, str1: 1.5925, con1: 2.1875}], 
+	["Carrot Cake", ["Wheat Flour", "Aurochs Milk"], {prc1: 3.64, agi1: 2.73, str1: 2.45}],
 	["Raisin Butter-Cake", ["Wheat Flour"], {csm1: 5.602, prc1: 4.2}], 
 	["Raisin Butter-Cake", ["Cowsmilk", "Wheat Flour"], {csm1: 3.939, con1: 6.002}], 
 	["Raisin Butter-Cake", ["Sheepsmilk", "Wheat Flour"], {csm1: 6.8, prc1: 5}], 
@@ -971,5 +979,5 @@ var gl_fepmod = [
 	["Fishpie", ["Zander", "Barley Flour"], {int1: 5.4, prc1: 1.8, con1: 0.4}], 
 	["Fishpie", ["Zander", "Wheat Flour"], {int1: 4.964, prc1: 4.126, con1: 3.72}], 
 	["Birchbark Bream", ["Yellow Onion"], {int1: 3.2, csm1: 4, dex1: 2.997, str1: 1.797}], 
-	["Birchbark Bream", ["Red Onion"], {int1: 5.5, csm1: 3.996, dex1: 2.4}], 
+	["Birchbark Bream", ["Red Onion"], {int1: 5.5, csm1: 3.996, dex1: 2.4}],
 ];
