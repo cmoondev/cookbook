@@ -29,7 +29,7 @@ var gl_water = [
 
 var gl_pork = [
 	"Pork",
-	"Wild Pork"
+	"Boar"
 ];
 
 
@@ -45,7 +45,7 @@ var gl_mutton = [
 
 var gl_horse = [
 	"Horse",
-	"Wildhorse"
+	"Wild Horse"
 ];
 
 var gl_onion = [
@@ -166,9 +166,9 @@ var gl_meat = [
 "Walrus",
 "Wild Beef",
 "Wild Mutton",
-"Wild Pork",
+//"Wild Pork", replaced with Boar
 "Wildgoat",
-"Wildhorse",
+"Wild Horse",
 "Wolverine",
 "Swan",
 "Troll"
@@ -294,9 +294,8 @@ var go_inglists = {
 	vegetable: gl_vegetable,
 };
 
-//food list: name, ings, basefep nrj, glut
 var gl_food = [
-//CONSTA
+	//CONSTA
 	["Kvann",	[],	{prc2: 1}, 250.0, 1.0],
 	["Quince", [], {wil1 :0.5,}, 80.0, 2.0], 
 	["Cave Slime", [], {psy2 :1.0, str2 :1.0, con2 :1.0,}, 200.0, 0.7], 
@@ -305,7 +304,7 @@ var gl_food = [
 	["Spitroast Wood Grouse", [], {dex1: 1.0, con2: 0.5, csm1: 0.5}, 250.0, 2.0], 
 	["Roast Wood Grouse", [], {dex1: 1.0, con2: 0.5}, 250.0, 4.0], 
 
-//OLD CONSTA 
+	//OLD CONSTA 
 	["Abbaye", [], {int1: 5, prc1: 3, }, 100, 4],
 	["Almond", [], {wil1: 0.5, }, 80, 2],
 	["Ant Empress", [], {dex1: 5, psy1: 4, }, 1000, 1],
@@ -538,7 +537,8 @@ var gl_food = [
 	["Wonderful Wilderness Wurst", [], {wil2: 12, psy1: 6, psy2: 6, }, 1200, 4],
 	["Yellowfeet", [], {str1: 1, int1: 1, }, 125, 1],
 	["Zamorano", [], {str2: 3, agi2: 3, psy2: 3, }, 100, 4],
-//VARIA
+	
+	//VARIA
 	["Autumn Steak", ["meat", "mushroom", "salad", ], {con1: 4, prc1: 2, prc2: 1}, 800, 3],
 	["Beeted Bird Breast", ["poultry", "fat", ], {con1: 4, csm1: 4, psy1: 4}, 750, 5],
 	["Big Bear Banger", ["pork", ], {str1: 6, str2: 4}, 900, 10],
@@ -601,6 +601,7 @@ var gl_food = [
 	["Two-Bird Skewer", ["poultry", "tuber", "sweetener", ], {agi1: 2, wil1: 3}, 800, 2.5],
 	["Zesty Brill", ["onion", ], {str1: 3, dex1: 3, wil1: 4}, 800, 2.5],
 
+	//BAKED
 	["Apple Pie", ["water", "flour", "butter", ], {con1: 10, }, 500, 3.5],
 	["Bark Bread", ["water", "flour", ], {con1: 5, wil1: 5, }, 500, 5],
 	["Baked Birchbark Bream", ["onion", ], {int1: 5, csm1: 5, dex1: 4, }, 600, 3],
@@ -651,10 +652,7 @@ var gl_food = [
 ];
 
 
-
-//modded feps of food: foodName, ingIndexes, feps
 var gl_fepmod = [
-//TEST BLOCK. SHOULD BE REMOVED
 	["Butter Porridge", [], {str2: 1, con1: 3, }], 
 	["Butter-Chived Trout", [], {str1: 2, int1: 3, prc1: 4, }], 
 	["Butter-steamed Cavebulb", [], {psy1: 6, psy2: 4, }], 
@@ -666,9 +664,9 @@ var gl_fepmod = [
 	["Strawberries in Cream", [], {int2: 2, csm1: 2, wil1: 2, }], 
 	["Turnip Fries", [], {int1: 2, prc2: 2, }], 
 	["Honeybun", [], {agi1: 4, }],
-	["Autumn Steak", ["Boreworm", "Beetroot Leaves", "Black Trumpets"], {prc2 :0.6, prc1 :2.0, con1 :3.8, psy1 :0.375,}],
-	["Autumn Steak", ["Bay Bolete", "Beetroot Leaves", "Bear"], {prc2: 1.25, prc1: 2.0, con1: 2.0, csm2: 0.625, str1: 3.75}], 
-// OLD DATA. SHOULD BE REMOVED
+
+
+//old data
 	["Encumbered Roast", ["Badger"], {str2: 3,	wil1: 2,	prc1: 1.4,	con1: 1.4}], 
 	["Encumbered Roast", ["Bat"], {str2: 3,	wil1: 2,	prc1: 2.2}], 
 	["Encumbered Roast", ["Bear"], {str2: 5.25,	wil1: 2,	prc1: 2}], 
@@ -780,10 +778,10 @@ var gl_fepmod = [
 	["Steak & Tubers", ["Wild Beef", "Yellow Onion", "Beetroot"], {str1: 2.584, con2: 1.999, csm1: 3.729}], 
 	["Steak & Tubers", ["Wild Beef", "Red Onion", "Carrot"], {str1: 3.358, con2: 1.998, dex1: 1.47}], 
 	["Steak & Tubers", ["Wild Beef", "Red Onion", "Beetroot"], {str1: 3.567, con2: 1.998, csm1: 1.681}], 
-	["Steak & Tubers", ["Wildhorse", "Yellow Onion", "Carrot"], {str1: 2.302, con2: 1.999, csm1: 2.618, dex1: 1.008}], 
-	["Steak & Tubers", ["Wildhorse", "Yellow Onion", "Beetroot"], {str1: 2.449, con2: 1.998, csm1: 3.77}], 
-	["Steak & Tubers", ["Wildhorse", "Red Onion", "Carrot"], {str1: 3.279, con2: 1.999, csm1: 0.798, dex1: 1.434}], 
-	["Steak & Tubers", ["Wildhorse", "Red Onion", "Beetroot"], {str1: 3.493, con2: 2.003, csm1: 2.439}], 
+	["Steak & Tubers", ["Wild Horse", "Yellow Onion", "Carrot"], {str1: 2.302, con2: 1.999, csm1: 2.618, dex1: 1.008}], 
+	["Steak & Tubers", ["Wild Horse", "Yellow Onion", "Beetroot"], {str1: 2.449, con2: 1.998, csm1: 3.77}], 
+	["Steak & Tubers", ["Wild Horse", "Red Onion", "Carrot"], {str1: 3.279, con2: 1.999, csm1: 0.798, dex1: 1.434}], 
+	["Steak & Tubers", ["Wild Horse", "Red Onion", "Beetroot"], {str1: 3.493, con2: 2.003, csm1: 2.439}], 
 	["Steak & Tubers", ["Wolverine", "Yellow Onion", "Carrot"], {str1: 0.96, con2: 2.002, csm1: 2.319, agi1: 1.282, dex1: 1.015}], 
 	["Steak & Tubers", ["Wolverine", "Red Onion", "Carrot"], {str1: 2.398, con2: 2, csm1: 0.962, agi1: 1.279, dex1: 1.048}], 
 	["Steak & Tubers", ["Wolverine", "Yellow Onion", "Beetroot"], {str1: 0.958, con2: 1.998, csm1: 3.622, agi1: 1.281}], 
@@ -795,8 +793,8 @@ var gl_fepmod = [
 	["Meatpie", ["Bear", "Wheat Flour"], {str1: 1, con1: 4, str2: 6, agi1: 3}], 
 	["Meatpie", ["Beef", "Barley Flour"], {str1: 5.002, con1: 6.507}], 
 	["Meatpie", ["Beef", "Wheat Flour"], {str1: 5.001, con1: 4.158, prc1: 3.119}], 
-	["Meatpie", ["Boar", "Barley Flour"], {str1: 3.251, con1: 8.996}], 
-	["Meatpie", ["Boar", "Wheat Flour"], {str1: 2.6, con1: 7.203, agi1: 3.001}], 
+	// ["Meatpie", ["Boar", "Barley Flour"], {str1: 3.251, con1: 8.996}], 
+	// ["Meatpie", ["Boar", "Wheat Flour"], {str1: 2.6, con1: 7.203, agi1: 3.001}], 
 	["Meatpie", ["Chicken", "Barley Flour"], {str1: 5, con1: 3.999, dex1: 1.616}], 
 	["Meatpie", ["Chicken", "Wheat Flour"], {str1: 4.001, con1: 4.001, agi1: 2.4, dex1: 0.602}], 
 	["Meatpie", ["Deer", "Barley Flour"], {str1: 3.496, con1: 5.004, prc1: 3.997}], 
@@ -821,7 +819,7 @@ var gl_fepmod = [
 	["Meatpie", ["Swan", "Barley Flour"], {str1: 4.998, con1: 2.999, int1: 2.499}], 
 	["Meatpie", ["Swan", "Wheat Flour"], {str1: 3.998, con1: 2.399, int1: 1.999, agi1: 3.001}], 
 	["Meatpie", ["Troll", "Barley Flour"], {str1: 4.998, con1: 4.998, psy2: 10.001}], 
-	["Meatpie", ["Walrus", "Wheat Flour"], {str1: 1.251, con1: 9.197, prc1: 6.899}], 
+	// ["Meatpie", ["Walrus", "Wheat Flour"], {str1: 1.251, con1: 9.197, prc1: 6.899}], 
 	["Meatpie", ["Wolverine", "Barley Flour"], {str1: 5.001, con1: 3.001, dex2: 3.998}], 
 	["Meatpie", ["Wolverine", "Wheat Flour"], {str1: 4.002, con1: 2.403, dex2: 3.202, agi1: 3.002}], 
 	["Blueberry Pie", ["Barley Flour"], {int1: 4.002, prc1: 2.701, csm1: 1.053}], 
@@ -1003,6 +1001,10 @@ var gl_fepmod = [
 	["Birchbark Bream", ["Yellow Onion"], {int1: 3.2, csm1: 4, dex1: 2.997, str1: 1.797}], 
 	["Birchbark Bream", ["Red Onion"], {int1: 5.5, csm1: 3.996, dex1: 2.4}],
 
+//new data
+	["Autumn Steak", ["Boreworm", "Beetroot Leaves", "Black Trumpets"], {prc2 :0.6, prc1 :2.0, con1 :3.8, psy1 :0.375,}],
+	["Autumn Steak", ["Bay Bolete", "Beetroot Leaves", "Bear"], {prc2: 1.25, prc1: 2.0, con1: 2.0, csm2: 0.625, str1: 3.75}], 
+
 	["Shepherd's Pie", ["Barley Flour", "Leek", "Carrot"], {str2: 1.8, prc2: 3.0, con1: 5.12, str1: 0.7, int1: 3.6, dex1: 2.24}], 
 	["Shepherd's Pie", ["Barley Flour", "Red Onion", "Carrot"], {str2: 1.8, prc2: 3.0, con1: 6.68, dex1: 2.9225}], 
 	["Shepherd's Pie", ["Barley Flour", "Yellow Onion", "Carrot"], {str2: 1.44, prc2: 3.0, con1: 7.048, str1: 0.7, dex1: 3.0835}],
@@ -1013,11 +1015,70 @@ var gl_fepmod = [
 	["Seal Burger", ["Heartwood Leaves", "Wheat Flour"], {con2: 4.2, str1: 4.0, wil1: 6.4, int1: 1.8, agi1: 4.8}], 
 	["Seal Burger", ["Lettuce Leaf", "Wheat Flour"], {con2: 3.0, str1: 3.0, wil1: 2.0, con1: 5.6}], 
 	["Seal Burger", ["Beetroot Leaves", "Wheat Flour"], {con2: 2.4, str1: 2.5, wil1: 3.0, con1: 1.8}], 
-
 	["Seal Burger", ["Barley Flour", "Stinging Nettle"], {con2: 3.0, str1: 2.125, wil1: 4.0, agi1: 0.625}], 
 	["Seal Burger", ["Barley Flour", "Heartwood Leaves"], {con2: 4.2, str1: 5.0, wil1: 8.0, int1: 1.8}], 
 	["Seal Burger", ["Barley Flour", "Green Kelp"], {con2: 3.0, str1: 2.5, wil1: 2.8, csm1: 1.2}], 
 	["Seal Burger", ["Barley Flour", "Beetroot Leaves"], {con2: 3.0, str1: 3.125, wil1: 2.75}], 
 	["Seal Burger", ["Barley Flour", "Marsh-Mallow"], {con2: 3.0, str1: 2.5, wil1: 3.4, agi1: 2.4}], 
 	["Seal Burger", ["Barley Flour", "Lettuce Leaf"], {con2: 3.0, str1: 3.75, wil1: 2.0, con1: 4.0}], 
+
+	["Meatpie", ["Barley Flour", "Wood Grouse"], {str1: 5.0, con1: 2.0, dex2: 4.0}], 
+	["Meatpie", ["Walrus", "Barley Flour"], {str1: 1.125, con1: 11.5, csm1: 0.4375}], 
+	["Meatpie", ["Barley Flour", "Reindeer Venison"], {str1: 2.0, con1: 5.0, prc1: 4.5}], 
+	["Meatpie", ["Barley Flour", "Otter"], {str1: 4.0, con1: 5.0, dex2: 2.5}], 
+	["Meatpie", ["Barley Flour", "Wildgoat"], {str1: 5.0, con1: 1.25, wil1: 3.75}], 
+	["Meatpie", ["Barley Flour", "Venison"], {str1: 3.5, con1: 5.0, prc1: 4.0}], 
+	["Meatpie", ["Boreworm", "Barley Flour"], {str1: 5.0, con1: 2.96, prc1: 1.44}], 
+	["Meatpie", ["Barley Flour", "Pork"], {str1: 1.25, con1: 5.0, str2: 12.5}], 
+	["Meatpie", ["Barley Flour", "Boar"], {str1: 3.25, con1: 9.0}], 
+	["Meatpie", ["Grey Seal", "Barley Flour"], {str1: 2.25, con1: 4.0, dex2: 10.0, csm1: 0.875}], 
+	["Meatpie", ["Barley Flour", "Beaver"], {str1: 5.0, con1: 3.5, agi1: 2.0}], 
+	["Meatpie", ["Barley Flour", "Ptarmigan"], {str2: 6.0, con1: 5.0}], 
+	["Meatpie", ["Barley Flour", "Quail"], {str1: 1.0, con1: 5.0, dex1: 7.0}], 
+	["Meatpie", ["Magpie", "Barley Flour"], {str1: 3.0, con1: 4.2625}], 
+	["Meatpie", ["Barley Flour", "Adder"], {str1: 3.0, con1: 5.0, int2: 4.5}], 
+	["Meatpie", ["Barley Flour", "Mole"], {str1: 5.0, con1: 3.75, prc1: 1.0}], 
+	["Meatpie", ["Walrus", "Wheat Flour"], {str1: 1.25, con1: 9.2, prc1: 6.9}], 
+	["Meatpie", ["Otter", "Wheat Flour"], {str1: 3.2, con1: 4.0, dex2: 2.5, agi1: 2.4}], 
+	["Meatpie", ["Reindeer Venison", "Wheat Flour"], {str1: 2.0, con1: 6.43, prc1: 3.24}], 
+	["Meatpie", ["Wildgoat", "Wheat Flour"], {str1: 4.0, con1: 1.0, wil1: 3.0, agi1: 3.0}], 
+	["Meatpie", ["Wheat Flour", "Venison"], {str1: 2.8, con1: 4.0, agi1: 3.0, prc1: 2.9333}], 
+	["Meatpie", ["Pork", "Wheat Flour"], {str1: 1.25, con1: 4.0, str2: 10.0, agi1: 7.5}], 
+	["Meatpie", ["Wheat Flour", "Boar"], {str1: 2.6, con1: 7.2, agi1: 3.0}], 
+	["Meatpie", ["Boreworm", "Wheat Flour"], {str1: 4.0, con1: 2.4, prc1: 1.6, agi1: 3.0}], 
+	["Meatpie", ["Wood Grouse", "Wheat Flour"], {str1: 4.0, con1: 1.6, dex2: 3.2, agi1: 3.0}], 
+	["Meatpie", ["Beaver", "Wheat Flour"], {str1: 4.0, con1: 2.8, agi1: 4.6}], 
+	["Meatpie", ["Ptarmigan", "Wheat Flour"], {str2: 4.8, con1: 4.0, agi1: 3.6}], 
+	["Meatpie", ["Mole", "Wheat Flour"], {str1: 4.0, con1: 3.0, prc1: 0.8, agi1: 3.0}], 
+	["Meatpie", ["Magpie", "Wheat Flour"], {str1: 3.0, con1: 3.2, int1: 0.75, prc1: 2.4}], 
+	["Meatpie", ["Wheat Flour", "Quail"], {str1: 0.8, con1: 4.0, agi1: 3.0, dex1: 5.6}], 
+	["Meatpie", ["Barley Flour", "Wild Beef"], {str1: 5.0, con1: 5.0}], 
+	["Meatpie", ["Wild Beef", "Wheat Flour"], {str1: 4.0, con1: 4.0, agi1: 3.0}],
+	["Meatpie", ["Bat", "Wheat Flour"], {str1: 4.0, con1: 2.8, int1: 1.6, agi1: 3.0}], 
+	["Meatpie", ["Wild Mutton", "Wheat Flour"], {str1: 4.0, con1: 1.0, csm1: 3.0, agi1: 3.0}], 
+	["Meatpie", ["Wild Horse", "Wheat Flour"], {str1: 4.0, con1: 1.0, agi1: 6.0}], 
+	["Meatpie", ["Troll", "Wheat Flour"], {str1: 5.0, con1: 4.0, psy2: 7.2, agi1: 5.4}], 
+	["Meatpie", ["Barley Flour", "Wild Mutton"], {str1: 5.0, con1: 1.25, csm1: 3.75}], 
+	["Meatpie", ["Barley Flour", "Wild Horse"], {str1: 5.0, con1: 1.25, agi1: 3.75}], 
+	["Meatpie", ["Wheat Flour", "Squirrel"], {str1: 4.0, con1: 4.0, agi1: 2.4, int1: 0.9}], 
+
+	["Piglet Wursts", ["Pork"], {str1: 0.75, con2: 7.5}], 
+	["Piglet Wursts", ["Boar"], {str1: 1.95, con1: 2.4}], 
+
+	["Carrot Cake", ["Goatsmilk", "Wheat Flour"], {prc1: 3.9375, wil1: 3.43, agi1: 2.5725}], 
+	["Carrot Cake", ["Barley Flour", "Goatsmilk"], {prc1: 4.725, str1: 1.8375, dex1: 3.0625}], 
+	["Apple Pie", ["Goatsmilk", "Wheat Flour"], {con1: 5.625, dex1: 4.9, prc1: 3.675}], 
+	["Apple Pie", ["Wheat Flour", "Aurochs Milk"], {con1: 8.55, agi1: 3.9}], 
+	["Apple Pie", ["Barley Flour", "Goatsmilk"], {con1: 6.75, str1: 2.625, wil1: 4.375}], 
+	["Apple Pie", ["Barley Flour", "Aurochs Milk"], {con1: 5.85, str1: 5.4}], 
+	["Butter Scones", ["Goatsmilk", "Wheat Flour", "Goatsmilk"], {dex1: 4.224, int1: 1.0, agi1: 3.168}], 
+	["Butter Scones", ["Goatsmilk", "Wheat Flour", "Aurochs Milk"], {dex1: 2.1164, int1: 0.975, agi1: 2.442, con1: 1.189}], 
+	["Butter Scones", ["Cowsmilk", "Goatsmilk", "Wheat Flour"], {dex1: 2.442, int1: 1.125, con1: 1.75, agi1: 1.8315}], 
+	["Butter Scones", ["Goatsmilk", "Wheat Flour"], {dex1: 3.256, int1: 1.5, agi1: 2.442}], 
+	["Butter Scones", ["Sheepsmilk", "Goatsmilk", "Wheat Flour"], {dex1: 2.442, int1: 1.125, csm1: 1.75, agi1: 1.8315}], 
+	["Butter Scones", ["Barley Flour", "Goatsmilk", "Goatsmilk"], {dex1: 1.5, int1: 1.8, str1: 0.35, wil1: 2.59}], 
+	["Butter Scones", ["Barley Flour", "Goatsmilk", "Aurochs Milk"], {dex1: 1.4625, int1: 1.8, wil1: 0.8417, con1: 0.8862}], 
+	["Butter Scones", ["Barley Flour", "Cowsmilk", "Goatsmilk"], {dex1: 1.6875, int1: 1.8, str1: 0.9713, wil1: 1.2408}], 
+	["Butter Scones", ["Barley Flour", "Goatsmilk"], {dex1: 2.25, int1: 1.8, wil1: 1.295}], 
+	["Butter Scones", ["Barley Flour", "Sheepsmilk", "Goatsmilk"], {dex1: 4.6195, int1: 1.35}], 
 ];
