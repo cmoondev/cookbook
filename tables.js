@@ -1,4 +1,4 @@
-var gl_nofx = ["Spring Water"];
+var gl_nofx = ["Mix", "Spring Water"];
 
 //incomplete
 var gl_flour = [
@@ -7,20 +7,23 @@ var gl_flour = [
 ];
 
 var gl_milk = [
-		"Cowsmilk",
+	"Mix",
+	"Cowsmilk",
 	"Sheepsmilk",
 	"Goatsmilk",
 	"Aurochs Milk"	
 ];
 
 var gl_butter = [
-		"Cowsmilk",
+	"Mix",
+	"Cowsmilk",
 	"Sheepsmilk",
 	"Goatsmilk",
 	"Aurochs Milk"	
 ];
 
 var gl_water = [
+		"Mix",
 		"Spring Water"
 ];
 
@@ -119,7 +122,8 @@ var gl_fish = [
 ];
 
 var gl_fat = [
-		"Cowsmilk",
+	"Mix",
+	"Cowsmilk",
 	"Sheepsmilk",
 	"Goatsmilk",
 	"Aurochs Milk",
@@ -134,7 +138,7 @@ var gl_meat = [
 "Deer",
 "Goat",
 "Golden Eagle",
-"Grouse",
+"Wood Grouse",
 "Magpie",
 "Mallard",
 "Mammoth",
@@ -168,6 +172,23 @@ var gl_meat = [
 "Wolverine",
 "Swan",
 "Troll"
+];
+
+var gl_carcass = [
+"Chicken",
+"Golden Eagle",
+"Wood Grouse",
+"Magpie",
+"Mallard",
+"Ptarmigan",
+"Quail",
+"Adder",
+"Bat",
+"Hedgehog",
+"Mole",
+"Rabbit",
+"Squirrel",
+"Swan",
 ];
 
 var gl_tuber = [
@@ -249,6 +270,7 @@ var gl_vegetable = [
 
 var go_inglists = {
 	meat: gl_meat,
+	carcass: gl_carcass,
 	milk: gl_milk,
 	butter: gl_butter,
 	water: gl_water,
@@ -980,4 +1002,22 @@ var gl_fepmod = [
 	["Fishpie", ["Zander", "Wheat Flour"], {int1: 4.964, prc1: 4.126, con1: 3.72}], 
 	["Birchbark Bream", ["Yellow Onion"], {int1: 3.2, csm1: 4, dex1: 2.997, str1: 1.797}], 
 	["Birchbark Bream", ["Red Onion"], {int1: 5.5, csm1: 3.996, dex1: 2.4}],
+
+	["Shepherd's Pie", ["Barley Flour", "Leek", "Carrot"], {str2: 1.8, prc2: 3.0, con1: 5.12, str1: 0.7, int1: 3.6, dex1: 2.24}], 
+	["Shepherd's Pie", ["Barley Flour", "Red Onion", "Carrot"], {str2: 1.8, prc2: 3.0, con1: 6.68, dex1: 2.9225}], 
+	["Shepherd's Pie", ["Barley Flour", "Yellow Onion", "Carrot"], {str2: 1.44, prc2: 3.0, con1: 7.048, str1: 0.7, dex1: 3.0835}],
+
+	["Seal Burger", ["Marsh-Mallow", "Wheat Flour"], {con2: 3.0, str1: 2.0, wil1: 2.72, agi1: 4.44}], 
+	["Seal Burger", ["Stinging Nettle", "Wheat Flour"], {con2: 3.0, str1: 1.7, wil1: 3.2, agi1: 2.9}], 
+	["Seal Burger", ["Green Kelp", "Wheat Flour"], {con2: 2.4, str1: 2.0, wil1: 2.8, csm1: 1.2, con1: 1.8}], 
+	["Seal Burger", ["Heartwood Leaves", "Wheat Flour"], {con2: 4.2, str1: 4.0, wil1: 6.4, int1: 1.8, agi1: 4.8}], 
+	["Seal Burger", ["Lettuce Leaf", "Wheat Flour"], {con2: 3.0, str1: 3.0, wil1: 2.0, con1: 5.6}], 
+	["Seal Burger", ["Beetroot Leaves", "Wheat Flour"], {con2: 2.4, str1: 2.5, wil1: 3.0, con1: 1.8}], 
+
+	["Seal Burger", ["Barley Flour", "Stinging Nettle"], {con2: 3.0, str1: 2.125, wil1: 4.0, agi1: 0.625}], 
+	["Seal Burger", ["Barley Flour", "Heartwood Leaves"], {con2: 4.2, str1: 5.0, wil1: 8.0, int1: 1.8}], 
+	["Seal Burger", ["Barley Flour", "Green Kelp"], {con2: 3.0, str1: 2.5, wil1: 2.8, csm1: 1.2}], 
+	["Seal Burger", ["Barley Flour", "Beetroot Leaves"], {con2: 3.0, str1: 3.125, wil1: 2.75}], 
+	["Seal Burger", ["Barley Flour", "Marsh-Mallow"], {con2: 3.0, str1: 2.5, wil1: 3.4, agi1: 2.4}], 
+	["Seal Burger", ["Barley Flour", "Lettuce Leaf"], {con2: 3.0, str1: 3.75, wil1: 2.0, con1: 4.0}], 
 ];
