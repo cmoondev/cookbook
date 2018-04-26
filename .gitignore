@@ -1,3 +1,5 @@
 tools/*.*
 *.bkp
 tables.js.test
+tables.js
+index-offline.html
