@@ -2,12 +2,14 @@ var displayData = [];
 document.onLoad = main();
 var hideIndex = 6;
 
-
 function formatVal(val, format) {
 	if( !format ) return val;
 	switch ( format ) {
 		case "sign" : 
 			return val > 0 ? "+" + val : val ;
+			break;
+		case "aztext" : 
+			return val.toLowerCase().replace(/[^a-z]/g, "");
 			break;
 		case "d2pr" : 
 			return Math.round(val*10000)/100 + "%";
@@ -73,10 +75,10 @@ function parseFEP(objFEP) {
 		spnEv.innerHTML = formatVal(objFEP[k1], "d2fd");
 
 		var dvE = document.createElement("div");
-		dvE.className = "fep-single";
+		dvE.classList.add("fep-single");
 		dvE.appendChild(spnEn);
 		dvE.appendChild(spnEv);
-		dvE.style.backgroundColor = eventColor(k1);
+		dvE.classList.add(k1);
 		result.appendChild(dvE);
 	}
 	return result;
@@ -86,21 +88,20 @@ function parseIng(arrIng) {
 	var result = document.createElement("div");
 	result.className = "ing-list";
 	for( var k1 = 0; k1 < arrIng.length; k1++) {
-		// if( arrIng[k1] == "Mix") continue;
 
-		var spnIn = document.createElement("span");
-		spnIn.className = "ing-name";
-		spnIn.innerHTML = arrIng[k1];
+		var tnIng = document.createTextNode(arrIng[k1] + (k1 < arrIng.length-1 ? ", " : "") );
 
 		var dvI = document.createElement("div");
-		dvI.className = "ing-single";
-		dvI.appendChild(spnIn);
+		dvI.classList.add(formatVal(arrIng[k1], "aztext"));
+		dvI.classList.add("ing-single");
+		dvI.appendChild(tnIng);
 		result.appendChild(dvI);
-		empty = false;
+		/*
 		if(  k1 < arrIng.length-1 ) {
 			var spr = document.createTextNode(", ");
 			dvI.appendChild(spr);
 		}
+		*/
 	}
 	return result;
 }
@@ -193,6 +194,7 @@ function resetFields() {
 function renderTable(array) {
 	var tbody = table.getElementsByTagName("tbody")[0];
 	while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+	var renderedRowCount = 0;
 	for( var i = 0; i < array.length; i++) {
 		if( array[i][hideIndex] == true ) continue;
 		var row = document.createElement("tr");
@@ -213,6 +215,8 @@ function renderTable(array) {
 		// row.addEventListener("mouseover", highlight);
 		row.id = i;
 		tbody.appendChild(row);
+		renderedRowCount++;
+		if ( renderedRowCount>=opts["limit"] ) break;
 	}
 }
 
@@ -247,6 +251,10 @@ function processQuery() {
 
 	if( optionlist.debug ) opts.debug = optionlist.debug;
 	if( optionlist.theme == "dark" ) opts.theme = "dark";   
+	if( optionlist.limit ) {
+		var limitNum = parseInt(optionlist.limit);
+		if (!isNaN(limitNum)) opts.limit = limitNum;
+	} 
 }
 
 function addDropdownToInput(inputField, list) {
