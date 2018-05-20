@@ -1,6 +1,6 @@
 var basicURL = "http://www.havenandhearth.com/mt/r/gfx/invobjs/";
 var table = document.getElementById("data");
-var opts = { theme : "light", debug : false, limit : 9001 };
+var opts = { theme : "light", debug : false, limit : 9001, textmode : false };
 
 var evSName = {
 	str1 : "str",

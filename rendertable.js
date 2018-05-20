@@ -234,6 +234,13 @@ function applyTheme() {
 		document.head.appendChild(debugStyle);
 	}
 
+	if( !opts.textmode ) {
+		var iconStyle = document.createElement("link");
+		iconStyle.rel = "stylesheet";
+		iconStyle.href = "gfx/ingredient.css";
+		document.head.appendChild(iconStyle);
+	}
+
 	var themeStyle = document.createElement("link");
 	themeStyle.rel = "stylesheet";
 	themeStyle.href = "theme_" + opts.theme + ".css";
@@ -249,8 +256,20 @@ function processQuery() {
 	var pairs = querystring.split("&");
 	for( var i = 0; i < pairs.length; i++) optionlist[pairs[i].split("=")[0]] = pairs[i].split("=")[1];
 
-	if( optionlist.debug ) opts.debug = optionlist.debug;
+	if( optionlist.debug == "true" ) {
+		opts.debug = true;
+	} else {
+		opts.debug = false;
+	}
+
+	if( optionlist.textmode == "true" ) {
+		opts.textmode = true;
+	} else {
+		opts.textmode = false;
+	}
+
 	if( optionlist.theme == "dark" ) opts.theme = "dark";   
+
 	if( optionlist.limit ) {
 		var limitNum = parseInt(optionlist.limit);
 		if (!isNaN(limitNum)) opts.limit = limitNum;
