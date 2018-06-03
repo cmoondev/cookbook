@@ -171,10 +171,12 @@ body *
 {
 	float: left;
 	vertical-align: middle !important;
-	word-spacing: -0.15em;
-	letter-spacing: -0.015em;
+	word-spacing: -0.09em;
+	letter-spacing: -0.023em;
 	margin-left: 2px;
-	line-height: 12px;
+	line-height: 8.1pt;
+	font-family: 'SourceSansProRegular', sans-serif;
+	font-size: 9pt;
 }
 
 /* ------------------------------------*/
