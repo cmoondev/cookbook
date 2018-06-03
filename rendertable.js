@@ -32,6 +32,10 @@ function formatVal(val, format) {
 	}	
 }
 
+function azContains(a, b){
+	return formatVal(a, "aztext").indexOf( formatVal(b, "aztext") ) !== -1;
+}
+
 function eventShortName(key) {
 	var result = null;
 	for( var k1 in evSName ) {
@@ -137,7 +141,7 @@ function filterData(array) {
 		//filter by name
 		if( filterFood.length > 0 ) {
 			var itemName = array[i][0];
-			if( itemName.toUpperCase().indexOf(filterFood.toUpperCase()) == -1 ) {
+			if( !azContains(itemName, filterFood) ) {
 				array[i][hideIndex] = true;
 				continue;
 			}
@@ -148,7 +152,7 @@ function filterData(array) {
 			var itemIngArray = array[i][1];
 			var noIngFound = true;
 			for( var j = 0; j < itemIngArray.length; j++) {
-				if( itemIngArray[j].toUpperCase().indexOf(filterIng.toUpperCase()) != -1 ) {
+				if( azContains(itemIngArray[j], filterIng) ) {
 					noIngFound = false;
 					break;
 				}
