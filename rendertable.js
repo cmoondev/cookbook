@@ -11,8 +11,11 @@ function formatVal(val, format) {
 		case "aztext" : 
 			return val.toLowerCase().replace(/[^a-z]/g, "");
 			break;
-		case "d2pr" : 
+		case "d2pr" : // "percents" 0.54321 > 54.32%
 			return Math.round(val*10000)/100 + "%";
+			break;
+		case "d2pp" : // "plain percents" 0.54321 > 54.3
+			return Math.round(val*1000)/10;
 			break;
 		case "d2sd" :
 			return Math.round(val*100)/100;
@@ -64,6 +67,29 @@ function sumFEP(objFEP) {
 		result += objFEP[k];
 	}
 	return result;
+}
+
+function calcP(objFEP, targetFEP) {
+	var maxF = targetFEP;
+	var maxV = 0;
+	var totalV = 0;
+
+	if (maxF == "") {  //search for max fep when attribute is undefined
+		for(var k in objFEP) {
+			if (objFEP[k] > maxV) {
+					maxF = k.slice(0, 3);
+					maxV = objFEP[k];
+			}
+		}
+	}
+
+	//sum points of +1 and +2 events
+	for(var k in objFEP) {
+		if (k.indexOf(maxF) !== -1) {
+				totalV += objFEP[k];
+		}
+	}
+	return totalV/sumFEP(objFEP);
 }
 
 function parseFEP(objFEP) {
@@ -123,8 +149,18 @@ function filterData(array) {
 	var filterFood	= document.getElementById("filterFood").value;
 	var filterIng	= document.getElementById("filterIng").value;
 	var filterFEP	= document.getElementById("filterFEP").value;
+	var filterChanceMin	= document.getElementById("filterChanceMin").value;
+	var filterChanceMax	= document.getElementById("filterChanceMax").value;
+
+	if( !isNaN(parseFloat(filterChanceMin)) ) {
+		var fFilterChanceMin = parseFloat(filterChanceMin);
+	}
+	if( !isNaN(parseFloat(filterChanceMax)) ) {
+		var fFilterChanceMax = parseFloat(filterChanceMax);
+	}
 
 	var enableFEPSearch = false;
+	var eMax = "";
 	if( filterFEP.lastIndexOf(" ") !== -1 )
 	{
 		var filterFEPAtr = filterFEP.slice(0, filterFEP.lastIndexOf(" "));
@@ -132,6 +168,7 @@ function filterData(array) {
 		if( filterFEPAtr.length > 2 && !isNaN(filterFEPMod) ) {
 			filterFEPAtr = trimFE(filterFEPAtr);
 			enableFEPSearch = true;
+			eMax = filterFEPAtr.slice(0, 3);
 		}
 	}
 
@@ -181,6 +218,13 @@ function filterData(array) {
 				array[i][hideIndex] = true;
 			}
 		}
+
+		//filter by chance
+		var itemChance = calcP(array[i][2], eMax);
+		if( ((fFilterChanceMin != undefined) && (itemChance < fFilterChanceMin/100)) 
+			|| ((fFilterChanceMax != undefined) && (itemChance > fFilterChanceMax/100)) ) {
+			array[i][hideIndex] = true;	
+		}
 	}
 }
 
@@ -204,7 +248,7 @@ function renderTable(array) {
 		var row = document.createElement("tr");
 		var cells = [];
 
-		for( var j = 0; j <= 4; j++) {
+		for( var j = 0; j <= 5; j++) {
 			cells[j] = document.createElement("td");
 		}
 		var totalFEPs = sumFEP(array[i][2]);
@@ -216,7 +260,22 @@ function renderTable(array) {
 		}
 		cells[3].innerHTML = array[i][4];
 		cells[4].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs / array[i][4], "d2fd");
-		// row.addEventListener("mouseover", highlight);
+
+		var eMax = "";
+		var filterFEP	= document.getElementById("filterFEP").value;
+		var filterFEPAtr = filterFEP.slice(0, filterFEP.indexOf(" "));
+		if( filterFEPAtr.length == 3 ) {
+				eMax = filterFEPAtr;
+			}
+		cells[5].innerHTML = formatVal(calcP(array[i][2], eMax), "d2pp");
+
+		var divHdrChance = document.getElementById("hdr-chance");
+		var divHdrChanceSub = document.createElement("span");
+		divHdrChanceSub.innerHTML  = "" + (eMax == "" ? "max" : eMax) + "";
+		divHdrChanceSub.classList.add("sublabel");
+		divHdrChance.innerHTML = "%";
+		divHdrChance.appendChild(divHdrChanceSub);
+		// row.addE	ventListener("mouseover", highlight);
 		row.id = i;
 		tbody.appendChild(row);
 		renderedRowCount++;

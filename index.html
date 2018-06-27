@@ -12,9 +12,11 @@
 <body>
 	<div id="rFloater">
 		<div id="filters">
-			<input type="text" id="filterFood"	placeholder="Search for food" />
-			<input type="text" id="filterIng"		placeholder="Search for ingredient" />
-			<input type="text" id="filterFEP"		placeholder="Search for FEP (e. g. &#34;str +2 1&#34; or &#34;int 3&#34;)" />
+			<input type="text" id="filterFood"	placeholder="Food name" />
+			<input type="text" id="filterIng"		placeholder="Ingredient name" />
+			<input type="text" id="filterFEP"		placeholder="Attribute min. value (e. g. &#34;str +2 1&#34; or &#34;int 3&#34;)" />
+			<input type="text" id="filterChanceMin"		placeholder="Chance minimum" />
+			<input type="text" id="filterChanceMax"		placeholder="Chance maximum" />
 			<div class="button_halfwide" id="btnSearch">Search</div>
 			<div class="button_halfwide" id="btnReset">Clear all</div>
 		</div>
@@ -22,10 +24,11 @@
 	</div>
 	<div id="data-headers">
 		<div class="hdr">Food</div>
-		<div class="hdr">Ingredients</div>
-		<div class="hdr">FEP</div>
+		<div class="sorttable_nosort">Ingredients</div>
+		<div class="sorttable_nosort">FEP</div>
 		<div class="hdr">H</div>
 		<div class="hdr">F/H</div>
+		<div class="hdr" id="hdr-chance">%<span class="sublabel">max</span></div>
 	</div>
 	<div id="data-container">
 		<table id="data" class="sortable">
