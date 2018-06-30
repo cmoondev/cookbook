@@ -11,6 +11,8 @@
 	height: 30px;
 	overflow: hidden;
 	text-indent: -100pt;
+	padding: 0px !important;
+	margin: 0px !important;
 }
 
 .barleyflour{background-position: -150px -570px}
