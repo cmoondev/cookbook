@@ -16,7 +16,7 @@ body *
 	overflow: hidden;
 	top: 0pt;
 	left: 8px;
-	width: 756px;	
+	width: 800px;	
 	height: 32px;
 }
 
@@ -62,7 +62,7 @@ body *
 	position: absolute;
 	left: 8px;
 	top: 32px;
-	width: 756px;
+	width: 800px;
 	margin-right: 300px;
 }
 
@@ -95,12 +95,12 @@ body *
 
 #data-headers div:nth-child(1)
 {
-	width: 175px;
+	width: 170px;
 }
 
 #data td:nth-child(1)
 {
-	width: 175px;
+	width: 170px;
 	word-spacing: -0.1em;
 	letter-spacing: -0.02em;
 	line-height: 13px;
@@ -130,9 +130,10 @@ body *
 
 #data td:nth-child(4), #data-headers div:nth-child(4),
 #data td:nth-child(5), #data-headers div:nth-child(5),
-#data td:nth-child(6), #data-headers div:nth-child(6)
+#data td:nth-child(6), #data-headers div:nth-child(6),
+#data td:nth-child(7), #data-headers div:nth-child(7)
 {
-	width: 32px;
+	width: 36px;
 	text-align: center;
 }
 

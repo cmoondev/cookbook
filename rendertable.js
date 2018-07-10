@@ -243,12 +243,20 @@ function renderTable(array) {
 	var tbody = table.getElementsByTagName("tbody")[0];
 	while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
 	var renderedRowCount = 0;
+
+	var eMax = "";
+	var filterFEP	= document.getElementById("filterFEP").value;
+	var filterFEPAtr = filterFEP.slice(0, filterFEP.indexOf(" "));
+	if( filterFEPAtr.length == 3 ) {
+		eMax = filterFEPAtr;
+	}
+
 	for( var i = 0; i < array.length; i++) {
 		if( array[i][hideIndex] == true ) continue;
 		var row = document.createElement("tr");
 		var cells = [];
 
-		for( var j = 0; j <= 5; j++) {
+		for( var j = 0; j <= 6; j++) {
 			cells[j] = document.createElement("td");
 		}
 		var totalFEPs = sumFEP(array[i][2]);
@@ -258,20 +266,16 @@ function renderTable(array) {
 		for( var j = 0; j < cells.length; j++) {
 			row.appendChild(cells[j]);
 		}
-		cells[3].innerHTML = array[i][4];
-		cells[4].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs / array[i][4], "d2fd");
+		cells[3].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs, "d2fd");
+		cells[4].innerHTML = array[i][4];
+		cells[5].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs / array[i][4], "d2fd");
 
-		var eMax = "";
-		var filterFEP	= document.getElementById("filterFEP").value;
-		var filterFEPAtr = filterFEP.slice(0, filterFEP.indexOf(" "));
-		if( filterFEPAtr.length == 3 ) {
-				eMax = filterFEPAtr;
-			}
-		cells[5].innerHTML = formatVal(calcP(array[i][2], eMax), "d2pp");
+
+		cells[6].innerHTML = formatVal(calcP(array[i][2], eMax), "d2pp");
 
 		var divHdrChance = document.getElementById("hdr-chance");
 		var divHdrChanceSub = document.createElement("span");
-		divHdrChanceSub.innerHTML  = "" + (eMax == "" ? "max" : eMax) + "";
+		divHdrChanceSub.innerHTML = "" + (eMax == "" ? "max" : eMax) + "";
 		divHdrChanceSub.classList.add("sublabel");
 		divHdrChance.innerHTML = "%";
 		divHdrChance.appendChild(divHdrChanceSub);
