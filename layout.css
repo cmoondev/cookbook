@@ -9,29 +9,51 @@ body *
 	font-family: sans-serif;
 }
 
-#data-headers
+.clicky {
+	cursor: pointer;	
+}
+
+.pagenum:hover {
+	border-radius: 5px;
+}
+
+#pageHeader, #pageBottom
 {
 	position: fixed;
 	z-index: 2;
 	overflow: hidden;
-	top: 0pt;
-	left: 8px;
-	width: 800px;	
-	height: 32px;
+	left:0px;
+	width: 100%;	
+}
+
+#pageHeader 
+{
+	top: 0px;
+}
+
+#pageBottom 
+{
+	bottom: 0px;
+}
+
+#data-headers
+{
+	height: 28px;
+	width: 800px;
+	margin: 4px auto 0px auto;
 }
 
 	#data-headers>*
 	{
 		display: inline-block;
 		text-align: center !important;
-		height: 32px;
+		height: 100%;
 		float: left;
 	}
 	
 	#data-headers .hdr, #data-headers .sorttable_nosort
 	{
-		font-size: 11pt;
-		padding-top: 3pt;
+		font-size: 12pt;
 	}
 
 	#data-headers .hdr 
@@ -50,7 +72,7 @@ body *
 	}
 
 	span.sublabel {
-		font-size: 9pt !important;
+		font-size: 10pt !important;
 		line-height: 0.2em;
 		display: block !important;
 		width: 32px;
@@ -59,11 +81,10 @@ body *
 
 #data-container 
 {
-	position: absolute;
-	left: 8px;
-	top: 32px;
+	padding-top: 32px;
+	padding-bottom: 110px;
 	width: 800px;
-	margin-right: 300px;
+	margin: 0px auto 0px auto;
 }
 
 #data
@@ -71,8 +92,6 @@ body *
 	width: 100%;
 	border: none;
 	border-collapse: collapse;
-	margin: 0px;
-	padding: 0px;
 	font-size: 10.0pt;
 }
 
@@ -104,8 +123,6 @@ body *
 	word-spacing: -0.1em;
 	letter-spacing: -0.02em;
 	line-height: 13px;
-	/*font-size: 10.5pt;*/
-	/*text-align: right;*/
 	padding-left: 4px;
 	padding-right: 4px;
 }
@@ -192,24 +209,40 @@ body *
 }
 
 /* ------------------------------------*/
-/* ----------- Side panel ------------ */
+/* ----------- 	Pagination 	---------- */
 /* ------------------------------------*/
 
-#rFloater 
-{
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	z-index: 3;
-	padding: 4px;
-	width: 300px;
-	height: 100%;
-	font-size: 10.5pt;
+#pageStats {
+	margin-top: 6pt;
+	font-size: 75%;
 }
 
-#filters 
-{
-	z-index: 3;
+#pageStats, #pageNumbers {
+	text-align: center;
+}
+
+.pagenum {
+	cursor: pointer;	
+	padding: 0.2ex 0.7ex 0.2ex 0.7ex;
+}
+
+.pagenum.current {
+	font-weight: bold;
+	cursor: default;
+}
+
+#pagination .separator {
+	font-size: 75%;
+	margin: 0ex 1ex 0ex 1ex;
+}
+
+/* ------------------------------------*/
+/* ----------- 	Filters 	------------ */
+/* ------------------------------------*/
+
+#filters {
+	width: 800px;
+	margin: 0px auto 0px auto;
 }
 
 #filters *
@@ -219,63 +252,39 @@ body *
 	z-index: 4;	
 	border: none;
 	outline: none;
-	height: 18px;
-	margin-top: 1px;
+	vertical-align: middle;
 }
 
 #filters>*
 {
+	display: inline-block;
+	height: 72px;
+}
+
+#button_left, #button_right{
+	width: 72px;
+}
+
+#btnSearch, #btnReset {
+	margin: 6px;
+	height: 60px;
+	width: 60px;
+}
+
+#fields_middle {
+	width: 640px;
+}
+
+#filterFood, #filterIng, #filterFEP, #filterChanceMin, #filterChanceMax {
+	width: 312px;
+	height: 16pt;
+	margin-right: 4px;
+	margin-top: 8px;
 	border-bottom: #000 1px solid;
-}
-
-.dropdownButton
-{
-	position: absolute;
-	z-index: 5;
-	width: 20px;
-	text-align: center;
-	cursor: pointer;
-	border: none !important;
-	font-size: 13.0pt;	
-}
-
-.dropdownList
-{
-	position: absolute;
-	z-index: 99 !important;
-	padding: 4px !important;
-	left: -204px;
-	width: 192px;
-	max-height: 300px;
-	overflow-y: auto;
-}
-
-.dropdownList div
-{	
-	height: auto !important;
-	vertical-align: middle;
-	border: none !important;
-	cursor: pointer;	
-}
-
-#filterFood, #filterIng, #filterFEP
-{
-	width: 296px;
+	display: inline-block;
 }
 
 #filterChanceMin, #filterChanceMax
 {
-	width: 49%;
-	/*margin-right: 2px;*/
-	/*margin-left: 2px;*/
-}
-
-#filters .button_halfwide
-{
-	width: 128px;
-	display: inline-block;
-	margin: 9px;
-	text-align: center;
-	height: 22px;
-	cursor: pointer;
+	width: 152px;
 }

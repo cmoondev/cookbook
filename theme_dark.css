@@ -18,7 +18,20 @@ body *
 	color: #DDD;
 }
 
-#data-headers
+svg * {
+	fill: #888;
+	stroke: #888;
+}
+
+.clicky:hover svg * {
+	fill: #BBB;
+	stroke: #BBB;
+}
+
+
+
+
+#pageHeader, #pageBottom
 {
 	background-color: #111;
 }
@@ -37,12 +50,6 @@ body *
 #data tbody tr:nth-child(even)
 {
 	background-color:#0B0B0B;
-}
-
-#data tr:hover td
-{
-	background-color: #333;
-	/*color: #FFF;*/
 }
 
 .fep-single .fep-value{
@@ -118,6 +125,15 @@ body *
 
 /*FEP COLORS END*/
 
+.pagenum:hover {
+	background-color: #421;
+}
+
+.pagenum.current:hover {
+	background: none !important;
+}
+
+/*
 .dropdownList
 {
 	background-color: #000 !important;
@@ -128,22 +144,23 @@ body *
 {
 	background-color: #333;
 }
+*/
 
-#filters>*
+#fields_middle>*
 {
 	border-bottom: #888 1px solid;
 }
 
-#filters>*:focus {
+#fields_middle>*:focus {
 	border-bottom: #AAA 1px solid;
 }
 
-#filters input::-webkit-input-placeholder 
+#fields_middle input::-webkit-input-placeholder 
 {
 	color: #888;
 }
 
-#filters input :-ms-input-placeholder  
+#fields_middle input :-ms-input-placeholder  
 {
 	color: #888;
 }

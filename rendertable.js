@@ -1,43 +1,17 @@
 var displayData = [];
+var PageState = {
+	HideIndex: 6,
+	PageNumber: 1, //starts with 1
+	SearchRequest: {
+		Name: "",
+		Ing: "",
+		FEPAtr: "",
+		FEPVal: 0,
+		ChanceMin: 0,
+		ChanceMax: 100
+	}
+}
 document.onLoad = main();
-var hideIndex = 6;
-
-function formatVal(val, format) {
-	if( !format ) return val;
-	switch ( format ) {
-		case "sign" : 
-			return val > 0 ? "+" + val : val ;
-			break;
-		case "aztext" : 
-			return val.toLowerCase().replace(/[^a-z]/g, "");
-			break;
-		case "d2pr" : // "percents" 0.54321 > 54.32%
-			return Math.round(val*10000)/100 + "%";
-			break;
-		case "d2pp" : // "plain percents" 0.54321 > 54.3
-			return Math.round(val*1000)/10;
-			break;
-		case "d2sd" :
-			return Math.round(val*100)/100;
-			break;
-		case "d2fd" :
-			var res = Math.round(val*10)/10;
-			if( res-Math.round(res) === 0) res += ".0";
-			return res + " ";
-			break;
-		case "h2hm" :
-			var hrs = (val/60 < 10 ? "0" : "") + Math.floor(val/60);
-			var mns = (val%60 < 10 ? "0" : "") + Math.round(val%60);
-			return hrs + ":" + mns;
-			break;
-		default :
-			return val;
-	}	
-}
-
-function azContains(a, b){
-	return formatVal(a, "aztext").indexOf( formatVal(b, "aztext") ) !== -1;
-}
 
 function eventShortName(key) {
 	var result = null;
@@ -69,12 +43,11 @@ function sumFEP(objFEP) {
 	return result;
 }
 
-function calcP(objFEP, targetFEP) {
-	var maxF = targetFEP;
+function calcP(objFEP) {
+	var maxF = PageState.SearchRequest.FEPAtr.slice(0,3);
 	var maxV = 0;
 	var totalV = 0;
-
-	if (maxF == "") {  //search for max fep when attribute is undefined
+	if (maxF == "") {  //search for max fep when attribute filter is empty
 		for(var k in objFEP) {
 			if (objFEP[k] > maxV) {
 					maxF = k.slice(0, 3);
@@ -126,12 +99,6 @@ function parseIng(arrIng) {
 		dvI.classList.add("ing-single");
 		dvI.appendChild(tnIng);
 		result.appendChild(dvI);
-		/*
-		if(  k1 < arrIng.length-1 ) {
-			var spr = document.createTextNode(", ");
-			dvI.appendChild(spr);
-		}
-		*/
 	}
 	return result;
 }
@@ -142,60 +109,67 @@ function resetSorted() {
 	for( var i = 0; i < headrow.length; i++) {
 		headrow[i].className = headrow[i].className.replace("sorttable_sorted_reverse", "").replace("sorttable_sorted", "");
 	}
+
 }
 
 function filterData(array) {
-	// var hideIndex = array[0].length-1;
-	var filterFood	= document.getElementById("filterFood").value;
-	var filterIng	= document.getElementById("filterIng").value;
-	var filterFEP	= document.getElementById("filterFEP").value;
-	var filterChanceMin	= document.getElementById("filterChanceMin").value;
-	var filterChanceMax	= document.getElementById("filterChanceMax").value;
+	PageState.PageNumber = 1;
 
-	if( !isNaN(parseFloat(filterChanceMin)) ) {
-		var fFilterChanceMin = parseFloat(filterChanceMin);
+	var tmpFilterFEP	= document.getElementById("filterFEP").value;
+	var tmpFilterChanceMin	= document.getElementById("filterChanceMin").value;
+	var tmpFilterChanceMax	= document.getElementById("filterChanceMax").value;
+
+	PageState.SearchRequest.Name = document.getElementById("filterFood").value;
+	PageState.SearchRequest.Ing = document.getElementById("filterIng").value;
+
+	if( !isNaN(parseFloat(tmpFilterChanceMin)) ) {
+		PageState.SearchRequest.ChanceMin = parseFloat(tmpFilterChanceMin);
+	} else {
+		PageState.SearchRequest.ChanceMin = 0;
 	}
-	if( !isNaN(parseFloat(filterChanceMax)) ) {
-		var fFilterChanceMax = parseFloat(filterChanceMax);
+
+	if( !isNaN(parseFloat(tmpFilterChanceMax)) ) {
+		PageState.SearchRequest.ChanceMax = parseFloat(tmpFilterChanceMax);
+	} else {
+		PageState.SearchRequest.ChanceMax = 100;
 	}
 
 	var enableFEPSearch = false;
-	var eMax = "";
-	if( filterFEP.lastIndexOf(" ") !== -1 )
+	if( tmpFilterFEP.lastIndexOf(" ") !== -1 )
 	{
-		var filterFEPAtr = filterFEP.slice(0, filterFEP.lastIndexOf(" "));
-		var filterFEPMod = parseFloat(filterFEP.slice(filterFEP.lastIndexOf(" ")));
-		if( filterFEPAtr.length > 2 && !isNaN(filterFEPMod) ) {
-			filterFEPAtr = trimFE(filterFEPAtr);
+		var tmpFilterFEPAtr = tmpFilterFEP.slice(0, tmpFilterFEP.lastIndexOf(" "));
+		var tmpFilterFEPMod = parseFloat(tmpFilterFEP.slice(tmpFilterFEP.lastIndexOf(" ")));
+		if( tmpFilterFEPAtr.length > 2 && !isNaN(tmpFilterFEPMod) ) {
+			PageState.SearchRequest.FEPAtr = trimFE(tmpFilterFEPAtr);
+			PageState.SearchRequest.FEPVal = tmpFilterFEPMod;
 			enableFEPSearch = true;
-			eMax = filterFEPAtr.slice(0, 3);
 		}
 	}
 
 	for( var i = 0; i < array.length; i++) {
-		array[i][hideIndex] = false; //unhide every single row
+		array[i][PageState.HideIndex] = false; //unhide every row
 		
 		//filter by name
-		if( filterFood.length > 0 ) {
+		if( PageState.SearchRequest.Name.length > 0 ) {
 			var itemName = array[i][0];
-			if( !azContains(itemName, filterFood) ) {
-				array[i][hideIndex] = true;
+			if( !azContains(itemName, PageState.SearchRequest.Name) ) {
+				array[i][PageState.HideIndex] = true;
 				continue;
 			}
 		}
 
 		//filter by ing
-		if( filterIng.length > 0 ) {
+		if( PageState.SearchRequest.Ing.length > 0 ) {
 			var itemIngArray = array[i][1];
 			var noIngFound = true;
 			for( var j = 0; j < itemIngArray.length; j++) {
-				if( azContains(itemIngArray[j], filterIng) ) {
+				if( azContains(itemIngArray[j], PageState.SearchRequest.Ing) ) {
 					noIngFound = false;
 					break;
 				}
 			}
 			if( noIngFound ){
-				array[i][hideIndex] = true;
+				array[i][PageState.HideIndex] = true;
 				continue;
 			}
 		}
@@ -206,8 +180,8 @@ function filterData(array) {
 			var noFEPFound = true;
 			for(var j in itemFEPObject)
 			{
-				if( j.indexOf(filterFEPAtr) !== -1 ) {
-					if( filterFEPMod <= itemFEPObject[j] ) { 
+				if( j.indexOf(PageState.SearchRequest.FEPAtr) !== -1 ) {
+					if( PageState.SearchRequest.FEPVal <= itemFEPObject[j] ) { 
 						noFEPFound = false;
 						break;
 					}
@@ -215,15 +189,15 @@ function filterData(array) {
 			}
 
 			if( noFEPFound ) {
-				array[i][hideIndex] = true;
+				array[i][PageState.HideIndex] = true;
 			}
 		}
 
 		//filter by chance
-		var itemChance = calcP(array[i][2], eMax);
-		if( ((fFilterChanceMin != undefined) && (itemChance < fFilterChanceMin/100)) 
-			|| ((fFilterChanceMax != undefined) && (itemChance > fFilterChanceMax/100)) ) {
-			array[i][hideIndex] = true;	
+		var itemChance = calcP(array[i][2]);
+		if ( (PageState.SearchRequest.ChanceMin > 0) && (itemChance < PageState.SearchRequest.ChanceMin/100)
+			|| (PageState.SearchRequest.ChanceMax < 100) && (itemChance > PageState.SearchRequest.ChanceMax/100) ) {
+			array[i][PageState.HideIndex] = true;	
 		}
 	}
 }
@@ -233,7 +207,7 @@ function trimFE(input) {
 }
 
 function resetFields() {
-	var filters = document.getElementById("filters").childNodes;
+	var filters = document.getElementById("fields_middle").childNodes;
 	for(var i = 0; i < filters.length; i++)
 		if( filters[i].nodeName = "#text" ) filters[i].value = "";
 	refreshView();
@@ -242,17 +216,21 @@ function resetFields() {
 function renderTable(array) {
 	var tbody = table.getElementsByTagName("tbody")[0];
 	while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+	tbody.innerHTML = "";
 	var renderedRowCount = 0;
-
-	var eMax = "";
-	var filterFEP	= document.getElementById("filterFEP").value;
-	var filterFEPAtr = filterFEP.slice(0, filterFEP.indexOf(" "));
-	if( filterFEPAtr.length == 3 ) {
-		eMax = filterFEPAtr;
-	}
+	var resultRowCount = 0;
+	var skippedRowCount = 0;
+	var StartRender = PageState.PageNumber - 1;
 
 	for( var i = 0; i < array.length; i++) {
-		if( array[i][hideIndex] == true ) continue;
+		if( array[i][PageState.HideIndex] == true ) continue;
+		resultRowCount++;
+		if ( renderedRowCount>=opts["limit"] ) continue;
+		if ( skippedRowCount < (opts.limit*StartRender) ) {
+				skippedRowCount++;
+				continue;
+			}
+
 		var row = document.createElement("tr");
 		var cells = [];
 
@@ -269,22 +247,127 @@ function renderTable(array) {
 		cells[3].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs, "d2fd");
 		cells[4].innerHTML = array[i][4];
 		cells[5].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs / array[i][4], "d2fd");
-
-
-		cells[6].innerHTML = formatVal(calcP(array[i][2], eMax), "d2pp");
+		cells[6].innerHTML = formatVal(calcP(array[i][2]), "d2pp");
 
 		var divHdrChance = document.getElementById("hdr-chance");
 		var divHdrChanceSub = document.createElement("span");
+		var eMax = PageState.SearchRequest.FEPAtr.slice(0, 3);
 		divHdrChanceSub.innerHTML = "" + (eMax == "" ? "max" : eMax) + "";
 		divHdrChanceSub.classList.add("sublabel");
 		divHdrChance.innerHTML = "%";
 		divHdrChance.appendChild(divHdrChanceSub);
-		// row.addE	ventListener("mouseover", highlight);
-		row.id = i;
+		// row.id = i;
 		tbody.appendChild(row);
 		renderedRowCount++;
-		if ( renderedRowCount>=opts["limit"] ) break;
 	}
+
+	//           PAGINATION              //
+
+	var divPageStats = document.getElementById("pageStats");
+	var divPageNumbers = document.getElementById("pageNumbers");
+	var pageAmount = Math.ceil(resultRowCount/opts.limit);
+
+	if (pageAmount <= 1) {
+		while (divPageStats.firstChild) divPageStats.removeChild(divPageStats.firstChild);
+		divPageStats.innerHTML = (pageAmount == 1 ? "" : "Nothing found");
+		while (divPageNumbers.firstChild) divPageNumbers.removeChild(divPageNumbers.firstChild);
+		divPageNumbers.innerHTML = "";
+		return;
+	}
+
+	divPageStats.innerHTML = renderedRowCount + " out of " + resultRowCount + " results are displayed. ";
+	divPageStats.innerHTML += "Page: " + PageState.PageNumber + " of " + pageAmount;
+
+	while (divPageNumbers.firstChild) divPageNumbers.removeChild(divPageNumbers.firstChild);
+	var PageAMTLimit = 5;
+	var PageAMTShowed = 0;
+	var PageNumbersBL = [];
+	var PageNumbersBS = [];
+	var PageNumbersAS = [];
+	var PageNumbersAL = [];
+
+	var pn = Math.floor( (PageState.PageNumber - PageAMTLimit) / 10 - 1) * 10;
+	while (pn > 0) {
+		PageNumbersBL.push(pn);
+		pn -= 10;
+	}
+	PageNumbersBL.reverse();
+
+	var pnCounter = 0;
+	pn = PageState.PageNumber - 1;
+	while ( (pnCounter < PageAMTLimit) && (pn > 0) ) {
+		PageNumbersBS.push(pn);
+		pn--;
+		pnCounter++;
+	}
+	PageNumbersBS.reverse();
+
+	pnCounter = 0;
+	pn = PageState.PageNumber;
+	while ( (pnCounter < PageAMTLimit) && (pn < pageAmount) ) {
+		pn++;
+		PageNumbersAS.push(pn);
+		pnCounter++;
+	}
+
+	pn = Math.ceil( (PageState.PageNumber + PageAMTLimit + 1) / 10) * 10;
+	while (pn < pageAmount) {
+		PageNumbersAL.push(pn);
+		pn += 10;
+	}
+
+	if (PageState.PageNumber > 1 && PageState.PageNumber-PageAMTLimit > 1) {
+		divPageNumbers.appendChild(paginationNewPagelink(1, "first"));
+		divPageNumbers.appendChild(paginationNewSeparator());
+	}
+
+	if (PageNumbersBL.length !== 0) {
+		for (var j = 0; j < PageNumbersBL.length; j++) 
+			divPageNumbers.appendChild(paginationNewPagelink(PageNumbersBL[j], "bl"));
+		divPageNumbers.appendChild(paginationNewSeparator());
+	}
+	
+	for (var j = 0; j < PageNumbersBS.length; j++)
+			divPageNumbers.appendChild(paginationNewPagelink(PageNumbersBS[j], "bs"));
+	
+		divPageNumbers.appendChild(paginationNewPagelink(PageState.PageNumber, "current"));
+	
+	for (var j = 0; j < PageNumbersAS.length; j++)
+			divPageNumbers.appendChild(paginationNewPagelink(PageNumbersAS[j], "as"));
+
+	if (PageNumbersAL.length !== 0) {
+		divPageNumbers.appendChild(paginationNewSeparator());
+		for (var j = 0; j < PageNumbersAL.length; j++)
+			divPageNumbers.appendChild(paginationNewPagelink(PageNumbersAL[j], "al"));
+	}
+	
+	if (PageNumbersAL[PageNumbersAL.length-1] != pageAmount && PageNumbersAS[PageNumbersAS.length-1] != pageAmount && PageState.PageNumber != pageAmount) {
+		divPageNumbers.appendChild(paginationNewSeparator());
+		divPageNumbers.appendChild(paginationNewPagelink(pageAmount, "last"));
+	}
+}
+
+function paginationNewSeparator() {
+	var PageSeparator = document.createElement("span");
+	PageSeparator.innerHTML = "...";
+	PageSeparator.classList.add("separator");
+	return PageSeparator;
+}
+
+function paginationNewPagelink(pageNumber, className) {
+	var PageLink = document.createElement("span");
+	PageLink.innerHTML = pageNumber;
+	PageLink.id = "turnpage-" + pageNumber;
+	PageLink.classList.add("pagenum");
+	if (className) PageLink.classList.add(className);
+	PageLink.addEventListener("click", turnPage);
+	return PageLink;
+}
+
+function turnPage() {
+	var PageID = this.id.split("-")[1];
+	PageState.PageNumber = parseInt(PageID);
+	renderTable(displayData);
 }
 
 function refreshView() {
@@ -314,7 +397,7 @@ function applyTheme() {
 	document.head.appendChild(themeStyle);
 }
 
-function processQuery() {
+function processQuery() { //parses additional options from URL string
 	var querystring = window.location.href.split("?")[1];
 	if( !querystring ) return;
 	if( querystring.length == 0 ) return;
@@ -339,57 +422,8 @@ function processQuery() {
 
 	if( optionlist.limit ) {
 		var limitNum = parseInt(optionlist.limit);
-		if (!isNaN(limitNum)) opts.limit = limitNum;
+		if (!isNaN(limitNum)) opts.limit = Math.max(limitNum, 30);
 	} 
-}
-
-function addDropdownToInput(inputField, list) {
-	var currentWidth = inputField.clientWidth;
-	var fieldParent = inputField.parentNode;
-	
-	//adding dropdown button before target input
-	var divReferenceButton = document.createElement("div");
-	divReferenceButton.className = "dropdownButton";
-	divReferenceButton.innerHTML = "+";
-	inputField.style.width = currentWidth - 20 + "px";
-	inputField.style.paddingLeft = 20 + "px";
-	divReferenceButton.addEventListener("click", function () {toggleList(divReferenceList, divReferenceButton);} );
-	fieldParent.insertBefore(divReferenceButton, inputField);
-
-	//adding dropdown list to target input
-	var divReferenceList = document.createElement("div");
-	divReferenceList.div = "listReference";
-	divReferenceList.className = "dropdownList";
-	divReferenceList.style.display = "none";
-
-	var listsize = 0;
-	for( var i in list ) {
-		var line = document.createElement("div");
-		var text = document.createTextNode(i);
-		line.appendChild(text);
-		line.addEventListener("click", function() {
-			inputField.value = this.innerHTML + " ";
-			toggleList(divReferenceList, divReferenceButton);
-			inputField.focus();
-		})
-		divReferenceList.appendChild(line);
-		listsize += 1;
-	}
-
-	divReferenceList.style.height = listsize*17 + "px";
-	fieldParent.insertBefore(divReferenceList, divReferenceButton);
-}
-
-function toggleList(list, button) {
-	if( list.style.display == "block" ) {
-		button.innerHTML = "+";
-		list.style.display = "none";
-	}
-	else {
-		list.style.display = "block";
-		button.innerHTML = "-";
-	}
-	return;
 }
 
 function main() {
@@ -411,7 +445,7 @@ function main() {
 		});
 	document.getElementById("btnReset").addEventListener("click", resetFields);
 	document.getElementById("btnSearch").addEventListener("click", refreshView);
-	addDropdownToInput(document.getElementById("filterFEP"), evBaseName);
+	// addDropdownToInput(document.getElementById("filterFEP"), evBaseName);
 	loadDataFromTables();
 	refreshView();
 }

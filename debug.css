@@ -1,3 +1,13 @@
+#pageHeader, #pageBottom
+{
+	background-color: #A6A;	
+}
+
+#filters
+{
+	background-color: #6AA;	
+}
+
 #data-headers
 {
 	background-color: #AAA;
@@ -5,7 +15,7 @@
 
 #data-headers *
 {
-	border: 1px #666 solid;
+	border: 0px #666 solid;
 }
 
 #data *

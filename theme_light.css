@@ -12,6 +12,16 @@ body
 	color: #222;
 }
 
+svg * {
+	fill: #AAA;
+	stroke: #AAA;
+}
+
+.clicky:hover svg * {
+	fill: #06A;
+	stroke: #06A;
+}
+
 body *
 {
 	color: #222;
@@ -23,7 +33,7 @@ body *
 }
 
 
-#data-headers
+#pageHeader, #pageBottom
 {
 	background-color: #FFF;
 }
@@ -36,12 +46,6 @@ body *
 #data tbody tr:nth-child(even)
 {
 	background-color:#EAEAEA;
-}
-
-#data tr:hover td
-{
-	background-color: #ACD !important;
-	color: #000;
 }
 
 .fep-single .fep-value{
@@ -74,6 +78,16 @@ body *
 	.psy2 {background-color: #C286FE; }
 	/*FEP COLORS END*/
 
+
+	.pagenum:hover {
+		background-color: #CDE;
+	}
+
+	.pagenum.current:hover {
+		background: none !important;
+	}
+
+/*
 .dropdownList
 {
 	background-color: #FFF !important;
@@ -84,22 +98,23 @@ body *
 {
 	background-color: #CDE !important;
 }
+*/
 
-#filters>*
+#fields_middle>*
 {
 	border-bottom: #AAA 1px solid;
 }
 
-#filters>*:focus {
+#fields_middle>*:focus {
 	border-bottom: #444 1px solid;
 }
 
-#filters input::-webkit-input-placeholder 
+#fields_middle input::-webkit-input-placeholder 
 {
 	color: #AAA;
 }
 
-#filters :-ms-input-placeholder
+#fields_middle :-ms-input-placeholder
 {
 	color: #AAA;
 }
