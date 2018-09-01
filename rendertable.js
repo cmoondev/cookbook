@@ -95,6 +95,7 @@ function parseIng(arrIng) {
 		var tnIng = document.createTextNode(arrIng[k1] + (k1 < arrIng.length-1 ? ", " : "") );
 
 		var dvI = document.createElement("div");
+		dvI.title = arrIng[k1];
 		dvI.classList.add(formatVal(arrIng[k1], "aztext"));
 		dvI.classList.add("ing-single");
 		dvI.appendChild(tnIng);
