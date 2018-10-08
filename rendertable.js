@@ -68,25 +68,39 @@ function calcP(objFEP) {
 function parseFEP(objFEP) {
   var result = document.createElement("div");
   result.className = "fep-list";
+  var keyArray = [];
   for (var k1 in objFEP) {
+    keyArray.push(k1);
+  }
+  //sorting here
+  for (var i = 0; i < keyArray.length - 1; i++) {
+    for (var j = i + 1; j < keyArray.length; j++) {
+      if (objFEP[keyArray[i]] < objFEP[keyArray[j]]) {
+        var buffer = keyArray[i];
+        keyArray[i] = keyArray[j];
+        keyArray[j] = buffer;
+      }
+    }
+  }
+  //sorting end
+  for (var i = 0; i < keyArray.length; i++) {
     var spnEn = document.createElement("span");
     spnEn.className = "fep-name";
-    spnEn.innerHTML = eventShortName(k1) + " ";
+    spnEn.innerHTML = eventShortName(keyArray[i]) + " ";
 
     var spnEv = document.createElement("span");
     spnEv.className = "fep-value";
-    spnEv.innerHTML = formatVal(objFEP[k1], "d2fd");
+    spnEv.innerHTML = formatVal(objFEP[keyArray[i]], "d2fd");
 
     var dvE = document.createElement("div");
     dvE.classList.add("fep-single");
     dvE.appendChild(spnEn);
     dvE.appendChild(spnEv);
-    dvE.classList.add(k1);
+    dvE.classList.add(keyArray[i]);
     result.appendChild(dvE);
   }
   return result;
 }
-
 function parseIng(arrIng) {
   var result = document.createElement("div");
   result.className = "ing-list";
@@ -364,6 +378,7 @@ function paginationNewPagelink(pageNumber, className) {
 }
 
 function turnPage() {
+  resetSorted();
   var PageID = this.id.split("-")[1];
   PageState.PageNumber = parseInt(PageID);
   renderTable(displayData);
