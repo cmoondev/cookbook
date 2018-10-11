@@ -1,16 +1,22 @@
 var displayData = [];
+var staticData = [];
 var PageState = {
   HideIndex: 6,
   PageNumber: 1, //starts with 1
+  Sorting: {
+    "col": "food",
+    "order": "A"
+  },
   SearchRequest: {
-    Name: "",
-    Ing: "",
-    FEPAtr: "",
-    FEPVal: 0,
-    ChanceMin: 0,
-    ChanceMax: 100
+    "Name": "",
+    "Ing": "",
+    "FEPAtr": "",
+    "FEPVal": 0,
+    "ChanceMin": 0,
+    "ChanceMax": 100
   }
 };
+
 document.onLoad = main();
 
 function eventShortName(key) {
@@ -78,7 +84,6 @@ function parseFEP(objFEP) {
   keyArray.sort( function(a, b) {
     return (objFEP[b] - objFEP[a])
   } );
-
   //sorting end
 
   for (var i = 0; i < keyArray.length; i++) {
@@ -103,10 +108,9 @@ function parseFEP(objFEP) {
 function parseIng(arrIng) {
   var result = document.createElement("div");
   result.className = "ing-list";
+  if (!arrIng) return result;
   for (var k1 = 0; k1 < arrIng.length; k1++) {
-
     var tnIng = document.createTextNode(arrIng[k1] + (k1 < arrIng.length-1 ? ", " : ""));
-
     var dvI = document.createElement("div");
     dvI.title = arrIng[k1];
     dvI.classList.add(formatVal(arrIng[k1], "aztext"));
@@ -117,17 +121,10 @@ function parseIng(arrIng) {
   return result;
 }
 
-function resetSorted() {
-  var headers = document.getElementById("data-headers");
-  var headrow = headers.getElementsByTagName("div");
-  for (var i = 0; i < headrow.length; i++) {
-    headrow[i].className = headrow[i].className.replace("sorttable_sorted_reverse", "").replace("sorttable_sorted", "");
-  }
-}
-
-function filterData(array) {
+function prepareData(array, target) {
   PageState.PageNumber = 1;
 
+  //filers init
   var tmpFilterFEP  = document.getElementById("filterFEP").value;
   var tmpFilterChanceMin  = document.getElementById("filterChanceMin").value;
   var tmpFilterChanceMax  = document.getElementById("filterChanceMax").value;
@@ -140,7 +137,6 @@ function filterData(array) {
   } else {
     PageState.SearchRequest.ChanceMin = 0;
   }
-
   if (!isNaN(parseFloat(tmpFilterChanceMax))) {
     PageState.SearchRequest.ChanceMax = parseFloat(tmpFilterChanceMax);
   } else {
@@ -157,15 +153,28 @@ function filterData(array) {
       PageState.SearchRequest.FEPVal = tmpFilterFEPMod;
       enableFEPSearch = true;
     }
+  } else {
+    PageState.SearchRequest.FEPAtr = "";
+    PageState.SearchRequest.FEPVal = 0;
   }
 
+  var divHdrChance = document.getElementById("hdr-chance");
+  var divHdrChanceSub = document.createElement("span");
+  var eMax = PageState.SearchRequest.FEPAtr.slice(0, 3);
+  divHdrChanceSub.innerHTML = "" + (eMax == "" ? "max" : eMax) + "";
+  divHdrChanceSub.classList.add("sublabel");
+  divHdrChance.innerHTML = "%";
+  divHdrChance.appendChild(divHdrChanceSub);
+
+  //data processing
+  var temp = [];
   for (var i = 0; i < array.length; i++) {
-    array[i][PageState.HideIndex] = false; //unhide every row
+    var exclude = false; //unhide every row
     //filter by name
     if (PageState.SearchRequest.Name.length > 0) {
       var itemName = array[i][0];
       if (!azContains(itemName, PageState.SearchRequest.Name)) {
-        array[i][PageState.HideIndex] = true;
+        exclude = true;
         continue;
       }
     }
@@ -181,7 +190,7 @@ function filterData(array) {
         }
       }
       if (noIngFound){
-        array[i][PageState.HideIndex] = true;
+        exclude = true;
         continue;
       }
     }
@@ -201,17 +210,24 @@ function filterData(array) {
       }
 
       if (noFEPFound) {
-        array[i][PageState.HideIndex] = true;
+        exclude = true;
+        continue;
       }
     }
 
     //filter by chance
     var itemChance = calcP(array[i][2]);
-    if ((PageState.SearchRequest.ChanceMin > 0) && (itemChance < PageState.SearchRequest.ChanceMin/100)
-      || (PageState.SearchRequest.ChanceMax < 100) && (itemChance > PageState.SearchRequest.ChanceMax/100)) {
-      array[i][PageState.HideIndex] = true;  
+    if ((PageState.SearchRequest.ChanceMin > 0) && (itemChance < PageState.SearchRequest.ChanceMin/100) ||
+    (PageState.SearchRequest.ChanceMax < 100) && (itemChance > PageState.SearchRequest.ChanceMax/100)) {
+      exclude = true;
+      continue;
+    }
+
+    if (exclude == false) {
+      temp.push([ array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], calcP(array[i][2])]);
     }
   }
+  return temp;
 }
 
 function trimFE(input) {
@@ -225,59 +241,83 @@ function resetFields() {
   refreshView();
 }
 
+function sortFloat(data, rowA, rowB, colN) {
+  if (PageState.Sorting.order == "A") return ( data[rowA][colN] - data[rowB][colN] );
+  return ( data[rowB][colN] - data[rowA][colN] );
+}
+
 function renderTable(array) {
+  //sorting
+  var sortIndexes = [];
+  for (var i = 0; i < array.length; i++) {
+    sortIndexes.push(i);
+  }
+  switch (PageState.Sorting.col) {
+    case "food": 
+      sortIndexes.sort( function(a, b) {
+        if (array[a][0] == array[b][0]) return 0;
+        if (PageState.Sorting.order == "A") {
+          return (array[a][0] > array[b][0] ? 1 : -1);
+        } else {
+          return (array[a][0] < array[b][0] ? 1 : -1);
+        }
+      } );
+      break;
+    case "f": 
+      sortIndexes.sort( function(a, b) { return sortFloat(array, a, b, 3); });
+      break;
+    case "h": 
+      sortIndexes.sort(function(a, b) { return sortFloat(array, a, b, 4); });
+      break;
+    case "fh": 
+      sortIndexes.sort(function(a, b) { return sortFloat(array, a, b, 5); });
+      break;
+    case "chance": 
+      sortIndexes.sort(function(a, b) { return sortFloat(array, a, b, 6); });
+      break;
+    }
+
+  //rendering
   var tbody = table.getElementsByTagName("tbody")[0];
   while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
   tbody.innerHTML = "";
+
   var renderedRowCount = 0;
-  var resultRowCount = 0;
+  var totalRowCount = array.length;
   var skippedRowCount = 0;
   var StartRender = PageState.PageNumber - 1;
 
-  for (var i = 0; i < array.length; i++) {
-    if (array[i][PageState.HideIndex] == true) continue;
-    resultRowCount++;
-    if (renderedRowCount>=opts["limit"]) continue;
-    if (skippedRowCount < (opts.limit*StartRender)) {
-        skippedRowCount++;
-        continue;
-      }
+  for (var i = 0; i < sortIndexes.length; i++) {
+    var currentRow = array[sortIndexes[i]];
+    if (renderedRowCount >= opts["limit"]) break;
+
+    //skipping previous pages
+    if (skippedRowCount < (opts.limit * StartRender)) {
+      skippedRowCount++;
+      continue;
+    }
 
     var row = document.createElement("tr");
     var cells = [];
-
     for (var j = 0; j <= 6; j++) {
       cells[j] = document.createElement("td");
-    }
-    var totalFEPs = sumFEP(array[i][2]);
-    cells[0].innerHTML = array[i][0];
-    cells[1].appendChild(parseIng(array[i][1]));
-    cells[2].appendChild(parseFEP(array[i][2]));
-    for (var j = 0; j < cells.length; j++) {
       row.appendChild(cells[j]);
     }
-    cells[3].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs, "d2fd");
-    cells[4].innerHTML = array[i][4];
-    cells[5].innerHTML = array[i][4] == 0 ? "???" : formatVal(totalFEPs / array[i][4], "d2fd");
-    cells[6].innerHTML = formatVal(calcP(array[i][2]), "d2pp");
-
-    var divHdrChance = document.getElementById("hdr-chance");
-    var divHdrChanceSub = document.createElement("span");
-    var eMax = PageState.SearchRequest.FEPAtr.slice(0, 3);
-    divHdrChanceSub.innerHTML = "" + (eMax == "" ? "max" : eMax) + "";
-    divHdrChanceSub.classList.add("sublabel");
-    divHdrChance.innerHTML = "%";
-    divHdrChance.appendChild(divHdrChanceSub);
-    // row.id = i;
+    /*Food*/ cells[0].innerHTML = currentRow[0];
+    /*Ingr*/ cells[1].appendChild(parseIng(currentRow[1]));
+    /*FEPs*/ cells[2].appendChild(parseFEP(currentRow[2]));
+    /* F */  cells[3].innerHTML = formatVal(currentRow[3], "d2fd");
+    /* H */  cells[4].innerHTML = currentRow[4];
+    /*F/H*/  cells[5].innerHTML = formatVal(currentRow[5], "d2fd");
+    /*FEP%*/ cells[6].innerHTML = formatVal(currentRow[6], "d2pp");
     tbody.appendChild(row);
     renderedRowCount++;
   }
 
-  //           PAGINATION              //
-
+  //PAGINATION
   var divPageStats = document.getElementById("pageStats");
   var divPageNumbers = document.getElementById("pageNumbers");
-  var pageAmount = Math.ceil(resultRowCount/opts.limit);
+  var pageAmount = Math.ceil(totalRowCount/opts.limit);
 
   if (pageAmount <= 1) {
     while (divPageStats.firstChild) divPageStats.removeChild(divPageStats.firstChild);
@@ -287,7 +327,7 @@ function renderTable(array) {
     return;
   }
 
-  divPageStats.innerHTML = renderedRowCount + " out of " + resultRowCount + " results are displayed. ";
+  divPageStats.innerHTML = renderedRowCount + " out of " + totalRowCount + " results are displayed. ";
   divPageStats.innerHTML += "Page: " + PageState.PageNumber + " of " + pageAmount;
 
   while (divPageNumbers.firstChild) divPageNumbers.removeChild(divPageNumbers.firstChild);
@@ -377,15 +417,13 @@ function paginationNewPagelink(pageNumber, className) {
 }
 
 function turnPage() {
-  resetSorted();
   var PageID = this.id.split("-")[1];
   PageState.PageNumber = parseInt(PageID);
   renderTable(displayData);
 }
 
 function refreshView() {
-  resetSorted();
-  filterData(displayData);
+  displayData = prepareData(staticData);
   renderTable(displayData);
 }
 
@@ -439,9 +477,31 @@ function processQuery() { //parses additional options from URL string
   } 
 }
 
-function main() {
-  processQuery();
-  applyTheme();
+function sortTable(sender) {
+  var newSorting = sender.slice(sender.lastIndexOf("-") + 1, sender.length);
+
+  PageState.PageNumber = 1;
+  if (newSorting == PageState.Sorting.col) {
+    PageState.Sorting.order = switchOrder();;
+  } else {
+    PageState.Sorting.col = newSorting;  
+    PageState.Sorting.order = defaultOrder();
+  }
+
+  renderTable(displayData);
+}
+
+function defaultOrder() {
+  if (PageState.Sorting.col == "food") return "A";
+  return "D";
+}
+
+function switchOrder() {
+  if (PageState.Sorting.order == "D") return "A";
+  return "D";
+}
+
+function addEL() {
   window.addEventListener("keydown", function(event) {
     if (event)
       switch (event.keyCode) {
@@ -456,7 +516,22 @@ function main() {
         default : return;
       }
     });
+
   document.getElementById("btnReset").addEventListener("click", resetFields);
   document.getElementById("btnSearch").addEventListener("click", refreshView);
-  loadDataFromTables(displayData);
+
+  var headersEls = document.getElementsByClassName("hdr");
+  for (var i = 0; i < headersEls.length; i++) {
+    headersEls[i].addEventListener("click", function() {
+      sortTable(this.id);
+    });
+  }
+}
+
+function main() {
+  processQuery();
+  applyTheme();
+  addEL();
+  loadDataFromTables(staticData);
+  refreshView();
 }
