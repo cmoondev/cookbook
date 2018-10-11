@@ -533,5 +533,4 @@ function main() {
   applyTheme();
   addEL();
   loadDataFromTables(staticData);
-  refreshView();
 }
