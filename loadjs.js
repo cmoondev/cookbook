@@ -22,4 +22,5 @@ function loadDataFromTables(targetArray) { //targetArray generation
       targetArray.push( [food[fi][0], food[fi][1], food[fi][2], sumFEP(food[fi][2]), food[fi][4], (sumFEP(food[fi][2]) / food[fi][4])] );
     }
   }
+  refreshView();
 }

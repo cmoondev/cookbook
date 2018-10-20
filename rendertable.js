@@ -423,6 +423,7 @@ function turnPage() {
 }
 
 function refreshView() {
+  displayData.length = 0;
   displayData = prepareData(staticData);
   renderTable(displayData);
 }
