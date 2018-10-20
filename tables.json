@@ -400,7 +400,7 @@
 			["Hop Jellies", ["Black Pepper"], {"wil2" : 3.98, "str1" : 1.79}], 
 			["Hop Jellies", ["Laurel Leaves"], {"wil2" : 2.0, "str1" : 1.99}], 
 			["Sizzling Roast Pork", [], {"str2" : 3.75, "con2" : 3.75}], 
-			["Hop Jellies", [], {"str1": 1, "wil2": 2, }],
+			["Hop Jellies", [], {"str1": 1, "wil2": 2}],
 			["Cave Skewer", ["Chasm conch"], {"psy2" : 0.5, "con1" : 3.0, "prc2" : 5.0}], 
 			["Cave Skewer", ["Boreworm"], {"psy2" : 1.2, "con1" : 3.0, "csm1" : 0.8}], 
 			["Cave Skewer", ["Cave louse"], {"psy2" : 1.2, "con1" : 3.0, "wil2" : 1.6}], 
