@@ -7,6 +7,9 @@ function formatVal(val, format) {
 		case "aztext" : 
 			return val.toLowerCase().replace(/[^a-z]/g, "");
 			break;
+		case "azspaceminustext" :  //return lowercased string with anything beside a-z, space and minus excluded
+			return val.toLowerCase().replace(/[^a-z(\-)(\ )]/g, "");
+			break;
 		case "d2pr" : // "percents" 0.54321 > 54.32%
 			return Math.round(val*10000)/100 + "%";
 			break;

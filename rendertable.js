@@ -8,6 +8,14 @@ var PageState = {
     "order": "A"
   },
   SearchRequest: {
+    "Food" : {
+      "incl" : [],
+      "excl" : []
+    },
+    "Ingr" : {
+      "incl" : [],
+      "excl" : []
+    },
     "Name": "",
     "Ing": "",
     "FEPAtr": "",
@@ -125,12 +133,40 @@ function prepareData(array, target) {
   PageState.PageNumber = 1;
 
   //filers init
-  var tmpFilterFEP  = document.getElementById("filterFEP").value;
-  var tmpFilterChanceMin  = document.getElementById("filterChanceMin").value;
-  var tmpFilterChanceMax  = document.getElementById("filterChanceMax").value;
+  var tmpFilterFEP = document.getElementById("filterFEP").value;
+  var tmpFilterChanceMin = document.getElementById("filterChanceMin").value;
+  var tmpFilterChanceMax = document.getElementById("filterChanceMax").value;
 
-  PageState.SearchRequest.Name = document.getElementById("filterFood").value;
-  PageState.SearchRequest.Ing = document.getElementById("filterIng").value;
+  //food name filter init
+  PageState.SearchRequest.Food.incl.length = 0;
+  PageState.SearchRequest.Food.excl.length = 0;
+  var SRAFoodName = formatVal(document.getElementById("filterFood").value, "azspaceminustext").split(" ");
+  for (var i = 0; i < SRAFoodName.length; i++) {
+    var sprtdFoodName = formatVal(SRAFoodName[i], "aztext");
+    if (sprtdFoodName.length == 0) continue;
+    if (SRAFoodName[i].indexOf("-") == 0) {
+      PageState.SearchRequest.Food.excl.push(sprtdFoodName);
+    } else {
+      PageState.SearchRequest.Food.incl.push(sprtdFoodName);
+    }
+  }
+  //food name filter end
+
+  //food ingr filter init
+  PageState.SearchRequest.Ingr.incl.length = 0;
+  PageState.SearchRequest.Ingr.excl.length = 0;
+  var SRAFoodIngr = formatVal(document.getElementById("filterIng").value, "azspaceminustext").split(" ");
+  for (var i = 0; i < SRAFoodIngr.length; i++) {
+    var sprtdFoodIngr = formatVal(SRAFoodIngr[i], "aztext");
+    if (sprtdFoodIngr.length == 0) continue;
+    if (SRAFoodIngr[i].indexOf("-") == 0) {
+      PageState.SearchRequest.Ingr.excl.push(sprtdFoodIngr);
+    } else {
+      PageState.SearchRequest.Ingr.incl.push(sprtdFoodIngr);
+    }
+  }
+  //food ingr filter end  
+
 
   if (!isNaN(parseFloat(tmpFilterChanceMin))) {
     PageState.SearchRequest.ChanceMin = parseFloat(tmpFilterChanceMin);
@@ -170,29 +206,50 @@ function prepareData(array, target) {
   var temp = [];
   for (var i = 0; i < array.length; i++) {
     var exclude = false; //unhide every row
+    
     //filter by name
-    if (PageState.SearchRequest.Name.length > 0) {
-      var itemName = array[i][0];
-      if (!azContains(itemName, PageState.SearchRequest.Name)) {
+    var itemName = array[i][0];
+    for (var j = 0; j < PageState.SearchRequest.Food.incl.length; j++) {
+      if ( !azContains(itemName, PageState.SearchRequest.Food.incl[j]) ) {
+        exclude = true;
+        continue;
+      }
+    }
+    for (var j = 0; j < PageState.SearchRequest.Food.excl.length; j++) {
+      if ( azContains(itemName, PageState.SearchRequest.Food.excl[j]) ) {
         exclude = true;
         continue;
       }
     }
 
     //filter by ing
-    if (PageState.SearchRequest.Ing.length > 0) {
-      var itemIngArray = array[i][1];
-      var noIngFound = true;
-      for (var j = 0; j < itemIngArray.length; j++) {
-        if (azContains(itemIngArray[j], PageState.SearchRequest.Ing)) {
-          noIngFound = false;
+    var itemIngArray = array[i][1];
+    var ingFound = 0;
+    for (var j = 0; j < PageState.SearchRequest.Ingr.incl.length; j++) {
+      for (var k = 0; k < itemIngArray.length; k++) {
+        if ( azContains(itemIngArray[k], PageState.SearchRequest.Ingr.incl[j]) ) {
+          ingFound++;
           break;
         }
       }
-      if (noIngFound){
-        exclude = true;
-        continue;
+    }
+    if (ingFound < PageState.SearchRequest.Ingr.incl.length) { //if not every incl-ingredient found
+      exclude = true;
+      continue;
+    }
+
+    ingFound = 0;
+    for (var j = 0; j < PageState.SearchRequest.Ingr.excl.length; j++) {
+      for (var k = 0; k < itemIngArray.length; k++) {
+        if ( azContains(itemIngArray[k], PageState.SearchRequest.Ingr.excl[j]) ) {
+          ingFound++;
+          break;
+        }
       }
+    }
+    if (ingFound != 0) { //if any excl-ingredient found
+      exclude = true;
+      continue;
     }
 
     //filter by FEP
