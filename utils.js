@@ -35,5 +35,9 @@ function formatVal(val, format) {
 }
 
 function azContains(a, b){
-	return formatVal(a, "aztext").indexOf( formatVal(b, "aztext") ) !== -1;
+	if ( strictMatch.includes(b) ) {
+		return (formatVal(a, "aztext") == formatVal(b, "aztext"));	
+	} else {
+		return formatVal(a, "aztext").indexOf( formatVal(b, "aztext") ) !== -1;
+	}
 }
