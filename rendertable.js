@@ -367,6 +367,10 @@ function renderTable(array) {
     /* H */  cells[4].innerHTML = currentRow[4];
     /*F/H*/  cells[5].innerHTML = formatVal(currentRow[5], "d2fd");
     /*FEP%*/ cells[6].innerHTML = formatVal(currentRow[6], "d2pp");
+
+    cells[0].classList.add( "_" + formatVal(currentRow[0], "aztext") );
+    cells[0].classList.add("food-name");
+
     tbody.appendChild(row);
     renderedRowCount++;
   }
@@ -498,6 +502,11 @@ function applyTheme() {
     iconStyle.rel = "stylesheet";
     iconStyle.href = "gfx/ingredient.css";
     document.head.appendChild(iconStyle);
+
+    var foodIconStyle = document.createElement("link");
+    foodIconStyle.rel = "stylesheet";
+    foodIconStyle.href = "gfx/food.css";
+    document.head.appendChild(foodIconStyle);
   }
 
   var themeStyle = document.createElement("link");

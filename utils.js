@@ -35,9 +35,18 @@ function formatVal(val, format) {
 }
 
 function azContains(a, b){
-	if ( strictMatch.includes(b) ) {
+	if ( arrayIncludes(strictMatch, b) ) {
 		return (formatVal(a, "aztext") == formatVal(b, "aztext"));	
 	} else {
 		return formatVal(a, "aztext").indexOf( formatVal(b, "aztext") ) !== -1;
 	}
+}
+
+function arrayIncludes(array, item) {
+	for (var i = 0; i < array.length; i++) {
+		if (array[i] == item) {
+			return true;
+		}
+	}
+	return false;
 }

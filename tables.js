@@ -87,6 +87,7 @@ var gl_mushroom = [
 ];
 var gl_poultry = [
 	"Chicken",
+	"Eagle Owl",
 	"Golden Eagle",
 	"Magpie",
 	"Mallard",
@@ -146,6 +147,7 @@ var gl_meat = [
 	"Cave louse",
 	"Chasm conch",
 	"Chicken",
+	"Eagle Owl",
 	"Fox",
 	"Goat",
 	"Golden Eagle",
@@ -187,6 +189,7 @@ var gl_carcass = [
 	"Adder",
 	"Bat",
 	"Chicken",
+	"Eagle Owl",
 	"Golden Eagle",
 	"Hedgehog",
 	"Magpie",
@@ -594,10 +597,10 @@ var gl_food = [
 	
 	//VARIA
 	//unpublished
+
 	["Sizzling Roast Pork", ["spice"], {"str2" : 3.75, "con2" : 3.75}, 250.0, 4.0], 
 	["Hop Jellies", ["spice", "honey"], {"str1": 1, "wil2": 2}, 500, 1],
 	["Cave Skewer",	["meatweird"],	{"psy2" : 2.0, "con1" : 3.0}, 800.0, 3.0],
-	//unpublished end
 	["Autumn Steak", ["mushroom", "meat", "salad", "spice"], {"con1" : 4, "prc1" : 2, "prc2" : 1}, 800, 3],
 	["Beeted Bird Breast", ["poultry", "fat"], {"con1" : 4, "csm1" : 4, "psy1" : 4}, 750, 5],
 	["Big Bear Banger", ["pork"], {"str1" : 6, "str2" : 4}, 900, 10],
@@ -710,6 +713,17 @@ var gl_food = [
 ];
 var gl_fepmod = [
 /*unpublished start*/
+	["Meatpie", ["Eagle Owl", "Barley Flour"], {"str1" : 5.0, "con1" : 2.0, "prc1" : 4.0}], 
+	["Meatpie", ["Eagle Owl", "Wheat Flour"], {"str1" : 4.0, "con1" : 1.6, "prc1" : 4.0, "agi1" : 3.0}], 
+	["Poultry Pot Pie", ["Eagle Owl", "Wheat Flour"], {"dex2" : 2.4, "agi1" : 4.8, "csm1" : 0.8, "int1" : 2.0}], 
+	["Poultry Pot Pie", ["Eagle Owl", "Barley Flour"], {"dex2" : 3.0, "agi1" : 3.0, "int1" : 2.0, "csm1" : 0.28}], 
+	["Leeky Fowl", ["Eagle Owl"], {"csm2" : 2.0, "csm1" : 2.0, "int1" : 0.8, "prc1" : 2.0}], 
+	["Beeted Bird Breast", ["Eagle Owl"], {"con1" : 4.0, "csm1" : 4.0, "psy1" : 1.6, "int1" : 4.0}], 
+	["Meat-in-Jelly", ["Eagle Owl"], {"wil2" : 0.8, "con1" : 4.0, "int1" : 2.0}], 
+	["Butcher's Surprise", ["Eagle Owl"], {"prc1" : 1.0, "dex1" : 1.0, "csm1" : 0.4, "int2" : 1.0}], 
+	["Encumbered Roast", ["Eagle Owl"], {"str2" : 3.0, "wil1" : 2.0, "prc1" : 0.8, "int2" : 2.0}], 
+/*unpublished end*/
+
 	["Moules Frites", ["Carrot"], {"dex2" : 3.2, "csm1" : 3.0, "psy1" : 2.0, "prc1" : 1.4}], 
 	["Moules Frites", ["Beetroot"], {"dex2" : 3.4, "csm1" : 3.0, "psy1" : 2.0, "dex1" : 1.6}], 
 	["Moules Frites", ["Laurel Leaves", "Beetroot"], {"dex2" : 6.154, "csm1" : 3.0, "psy1" : 2.0, "dex1" : 2.896}], 
