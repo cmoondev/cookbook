@@ -53,6 +53,7 @@
 .cavelantern		{background-position: -120px -90px}
 .parboiledmorels{background-position: -150px -90px}
 .trollmushrooms {background-position: -180px -90px}
+.whiteruffles 	{background-position: -210px -60px}
 .yellowfeet 		{background-position: -210px -90px}
 
 .asp 					{background-position: -0px -180px}
@@ -128,6 +129,7 @@
 .squirrel 			{background-position: -180px -330px}
 .walrus 				{background-position: -210px -330px}
 
+
 .wildbeef 			{background-position: -0px    -360px}
 .wildmutton 		{background-position: -30px   -360px}
 .wildgoat 			{background-position: -60px   -360px}
@@ -138,7 +140,11 @@
 .boreworm 			{background-position: -210px  -360px}
 .cavelouse 			{background-position: -210px  -390px}
 .chasmconch 		{background-position: -180px  -390px}
+
+.ant				 		{background-position: -210px  -420px}
  
+.wolf		 				{background-position: -150px -390px}
+
 .carrot 	{background-position: -0px    -450px}
 .beetroot {background-position: -30px   -450px}
 .cavebulb {background-position: -60px   -450px}
