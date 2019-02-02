@@ -412,7 +412,7 @@ var gl_food = [
 	["Chantrelles", [], {"dex1" : 1}, 75, 1],
 	["Cherries", [], {"csm1" : 0.25}, 85, 2],
 	["Chestnut", [], {"str1" : 0.05}, 60, 2.5],
-	["Roast Chesnut", [], {"str1" : 1}, 200, 1],
+	["Roast Chestnut", [], {"str1" : 1}, 200, 1],
 	["Chives", [], {"agi1" : 1}, 75, 0.38],
 	["Cone Gruel", [], {"str1" : 1, "con1" : 2}, 500, 2],
 	["Cow Chorizo", [], {"str1" : 3, "con1" : 5, "wil1" : 2}, 600, 6],

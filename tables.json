@@ -252,7 +252,7 @@
   ["Roast Boreworm", ["spice"], {"str2" : 6, "prc1" : 0.5, "dex1" : 1}, 500, 4],
   ["Roast Cave Louse", ["spice"], {"con2" : 1.0, "wil1" : 1.0}, 250.0, 4.0], 
   ["Roast Chasm Conch", ["spice"], {"wil2" : 2.0, "con2" : 2.0, "prc1" : 2.0}, 250.0, 4.0], 
-  ["Roast Chesnut", [], {"str1" : 1}, 200, 1],
+  ["Roast Chestnut", [], {"str1" : 1}, 200, 1],
   ["Roast Chevon", ["spice"], {"dex2" : 1.5}, 250.0, 4.0], 
   ["Roast Chicken", ["spice"], {"dex1" : 1}, 250, 4],
   ["Roast Eagle Owl", ["spice"], {"int2" : 2.0, "prc1" : 2.0}, 250.0, 4.0], 
