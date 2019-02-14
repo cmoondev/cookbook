@@ -275,7 +275,7 @@ body *
 	width: 640px;
 }
 
-#filterFood, #filterIng, #filterFEP, #filterChanceMin, #filterChanceMax {
+#filterFood, #filterIng, #filterFEP {
 	width: 312px;
 	height: 16pt;
 	margin-right: 4px;
@@ -284,7 +284,6 @@ body *
 	display: inline-block;
 }
 
-#filterChanceMin, #filterChanceMax
-{
-	width: 152px;
+#filterFEP {
+	width: 632px;
 }

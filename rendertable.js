@@ -1,13 +1,13 @@
 var displayData = [];
 var staticData = [];
 var PageState = {
-  HideIndex: 6,
-  PageNumber: 1, //starts with 1
-  Sorting: {
-    "col": "food",
-    "order": "A"
+  "HideIndex" : 6,
+  "PageNumber" : 1, //starts with 1
+  "Sorting" : {
+    "col" : "food",
+    "order" : "A"
   },
-  SearchRequest: {
+  "SearchRequest" : {
     "Food" : {
       "incl" : [],
       "excl" : []
@@ -16,12 +16,7 @@ var PageState = {
       "incl" : [],
       "excl" : []
     },
-    "Name": "",
-    "Ing": "",
-    "FEPAtr": "",
-    "FEPVal": 0,
-    "ChanceMin": 0,
-    "ChanceMax": 100
+    "FEPs" : []
   }
 };
 
@@ -57,15 +52,25 @@ function sumFEP(objFEP) {
   return result;
 }
 
-function calcP(objFEP) {
-  var maxF = PageState.SearchRequest.FEPAtr.slice(0,3);
-  var maxV = 0;
+function calcP(objFEP, FEPname) {
+  var maxF = FEPname;
   var totalV = 0;
   if (maxF == "") {  //search for max fep when attribute filter is empty
+    var objSUM = {};
     for (var k in objFEP) {
-      if (objFEP[k] > maxV) {
-          maxF = k.slice(0, 3);
-          maxV = objFEP[k];
+      var shortKey = k.slice(0, 3);
+      if (objSUM[shortKey] == undefined) {
+        objSUM[shortKey] = objFEP[k];
+      } else {
+        objSUM[shortKey] += objFEP[k];
+      }
+    }
+
+    var maxV = 0;
+    for (var k in objSUM) {
+      if (objSUM[k] > maxV) {
+          maxF = k;
+          maxV = objSUM[k];
       }
     }
   }
@@ -129,14 +134,99 @@ function parseIng(arrIng) {
   return result;
 }
 
+function prepareFilterFEP(inputString) {
+  var res = [
+    {
+      "atrName" : "",
+      "valMin" : null,
+      "valMax" : null,
+      "perMin" : null,
+      "perMax" : null
+    }
+  ]
+  if (inputString.length == 0) return res;
+
+  var inputArray = inputString.toLowerCase().replace(/[^a-z0-9\-\ \,\.\%]/g, "").replace(/\ +/g, " ").split(", "); //purge and comma+space split into array
+  
+  for (var inputIndex = 0; inputIndex < inputArray.length; inputIndex++) {
+    var dataObj = {
+      "atrName" : "",
+      "valMin" : null,
+      "valMax" : null,
+      "perMin" : null,
+      "perMax" : null
+    }
+    var singleSubString = inputArray[inputIndex].trim();
+    var singleSubArray = singleSubString.split(" ");
+    
+    //validating subarray lenght input
+    if ((singleSubArray.length < 2) || (singleSubArray.length > 3)) {
+      console.log("Bad argument array length = " + singleSubArray.length + " at FEP input #" + (inputIndex+1) );
+      continue;
+    }
+
+
+    //validating FE name in input substr
+    var validFEname = false;
+    for (var evKey in evSName) {
+      if (evKey.indexOf(singleSubArray[0]) != -1) {
+        validFEname = true;
+        break;
+      }
+    }
+    if ( (singleSubArray[0].length < 3) || (singleSubArray[0].length > 4) ) {
+      validFEname = false;
+    }
+    if (!validFEname) {
+      console.log("Invalid FE name " + singleSubArray[0] + " at input #" + (inputIndex+1) );
+      continue;
+    } else {
+      dataObj.atrName = singleSubArray[0];
+    }
+
+    //validating FE value and percents in input substr
+    var validRange = true;
+    var rangeValA = null;
+    var rangeValB = null;
+    var rangePrcA = null;
+    var rangePrcB = null;
+    
+    for (var argIndex = 1; argIndex < singleSubArray.length; argIndex++) {
+      var rangeString = singleSubArray[argIndex];
+      if (rangeString.indexOf("-") == -1) {
+        validRange = false;
+        break;
+      }
+      var range = rangeString.replace(/\%/g, "").split("-");
+      if ( rangeString.indexOf("\%") != -1 ) {
+        if ( !isNaN( parseFloat(range[0]) ) ) rangePrcA = parseFloat(range[0]);
+        if ( !isNaN( parseFloat(range[1]) ) ) rangePrcB = parseFloat(range[1]);
+      } else {
+        if ( !isNaN( parseFloat(range[0]) ) ) rangeValA = parseFloat(range[0]);
+        if ( !isNaN( parseFloat(range[1]) ) ) rangeValB = parseFloat(range[1]);
+      }
+    }
+
+    if (!validRange) {
+      console.log("Invalid range at input #" + (inputIndex+1) );
+      continue;
+    } else {
+      dataObj.valMin = rangeValA;
+      dataObj.valMax = rangeValB;
+      dataObj.perMin = rangePrcA;
+      dataObj.perMax = rangePrcB;
+    }
+
+    res.push(dataObj);
+  }
+  // console.log(res); // DEBUG
+  return res;
+}
+
 function prepareData(array, target) {
   PageState.PageNumber = 1;
 
-  //filers init
-  var tmpFilterFEP = document.getElementById("filterFEP").value;
-  var tmpFilterChanceMin = document.getElementById("filterChanceMin").value;
-  var tmpFilterChanceMax = document.getElementById("filterChanceMax").value;
-
+  //filters init
   //food name filter init
   PageState.SearchRequest.Food.incl.length = 0;
   PageState.SearchRequest.Food.excl.length = 0;
@@ -167,36 +257,14 @@ function prepareData(array, target) {
   }
   //food ingr filter end  
 
-
-  if (!isNaN(parseFloat(tmpFilterChanceMin))) {
-    PageState.SearchRequest.ChanceMin = parseFloat(tmpFilterChanceMin);
-  } else {
-    PageState.SearchRequest.ChanceMin = 0;
-  }
-  if (!isNaN(parseFloat(tmpFilterChanceMax))) {
-    PageState.SearchRequest.ChanceMax = parseFloat(tmpFilterChanceMax);
-  } else {
-    PageState.SearchRequest.ChanceMax = 100;
-  }
-
-  var enableFEPSearch = false;
-  if (tmpFilterFEP.lastIndexOf(" ") !== -1)
-  {
-    var tmpFilterFEPAtr = tmpFilterFEP.slice(0, tmpFilterFEP.lastIndexOf(" "));
-    var tmpFilterFEPMod = parseFloat(tmpFilterFEP.slice(tmpFilterFEP.lastIndexOf(" ")));
-    if (tmpFilterFEPAtr.length > 2 && !isNaN(tmpFilterFEPMod)) {
-      PageState.SearchRequest.FEPAtr = trimFE(tmpFilterFEPAtr);
-      PageState.SearchRequest.FEPVal = tmpFilterFEPMod;
-      enableFEPSearch = true;
-    }
-  } else {
-    PageState.SearchRequest.FEPAtr = "";
-    PageState.SearchRequest.FEPVal = 0;
-  }
+  PageState.SearchRequest.FEPs = prepareFilterFEP(document.getElementById("filterFEP").value);
 
   var divHdrChance = document.getElementById("hdr-chance");
   var divHdrChanceSub = document.createElement("span");
-  var eMax = PageState.SearchRequest.FEPAtr.slice(0, 3);
+  var eMax = "";
+  if (PageState.SearchRequest.FEPs[PageState.SearchRequest.FEPs.length-1] != undefined) {
+    eMax = PageState.SearchRequest.FEPs[PageState.SearchRequest.FEPs.length-1].atrName;
+  }
   divHdrChanceSub.innerHTML = "" + (eMax == "" ? "max" : eMax) + "";
   divHdrChanceSub.classList.add("sublabel");
   divHdrChance.innerHTML = "%";
@@ -207,6 +275,7 @@ function prepareData(array, target) {
   for (var i = 0; i < array.length; i++) {
     var exclude = false; //unhide every row
     
+
     //filter by name
     var itemName = array[i][0];
     for (var j = 0; j < PageState.SearchRequest.Food.incl.length; j++) {
@@ -221,6 +290,7 @@ function prepareData(array, target) {
         continue;
       }
     }
+
 
     //filter by ing
     var itemIngArray = array[i][1];
@@ -252,43 +322,44 @@ function prepareData(array, target) {
       continue;
     }
 
-    //filter by FEP
-    if (enableFEPSearch) {
+
+    //filter by FEP and chance
+    for (var fepsIndex = 0; fepsIndex < PageState.SearchRequest.FEPs.length; fepsIndex++) {
+      searchFEPObject = PageState.SearchRequest.FEPs[fepsIndex];
+      if ( (searchFEPObject == undefined) || (searchFEPObject.atrName == "") ) continue;
       var itemFEPObject = array[i][2];
-      var noFEPFound = true;
-      for (var j in itemFEPObject)
-      {
-        if (j.indexOf(PageState.SearchRequest.FEPAtr) !== -1) {
-          if (PageState.SearchRequest.FEPVal <= itemFEPObject[j]) { 
-            noFEPFound = false;
-            break;
-          }
+      
+      var FEPFound = ( ( (searchFEPObject.valMin == null) || (searchFEPObject.valMin == 0) ) &&
+       ( (searchFEPObject.perMin == null) || (searchFEPObject.perMin == 0) ) ? true : false );
+      var valMinMatch = ( (searchFEPObject.valMin == null) || (searchFEPObject.valMin == 0) ? true : false );
+      var valMaxMatch = ( (searchFEPObject.valMax == null) ? true : false );
+      var perMinMatch = ( (searchFEPObject.perMin == null) || (searchFEPObject.perMin == 0) ? true : false );
+      var perMaxMatch = ( (searchFEPObject.perMax == null) ? true : false );
+
+      var targetFEPsum = 0;
+      itemChance = calcP(itemFEPObject, searchFEPObject.atrName)*100;
+
+      for (var j in itemFEPObject) {
+        if ( j.indexOf(searchFEPObject.atrName) !== -1) {
+          targetFEPsum += itemFEPObject[j];
         }
       }
-
-      if (noFEPFound) {
+      if (targetFEPsum !== 0) FEPFound = true;
+      if (searchFEPObject.valMin <= targetFEPsum) valMinMatch = true;
+      if (searchFEPObject.valMax >= targetFEPsum) valMaxMatch = true;
+      if (searchFEPObject.perMin <= itemChance) perMinMatch = true;
+      if (searchFEPObject.perMax >= itemChance) perMaxMatch = true;
+      if ( !(FEPFound && valMinMatch && valMaxMatch && perMinMatch && perMaxMatch) ) {
         exclude = true;
         continue;
       }
     }
 
-    //filter by chance
-    var itemChance = calcP(array[i][2]);
-    if ((PageState.SearchRequest.ChanceMin > 0) && (itemChance < PageState.SearchRequest.ChanceMin/100) ||
-    (PageState.SearchRequest.ChanceMax < 100) && (itemChance > PageState.SearchRequest.ChanceMax/100)) {
-      exclude = true;
-      continue;
-    }
-
     if (exclude == false) {
-      temp.push([ array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], calcP(array[i][2])]);
+      temp.push([ array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], calcP(array[i][2], PageState.SearchRequest.FEPs[PageState.SearchRequest.FEPs.length-1].atrName)]);
     }
   }
   return temp;
-}
-
-function trimFE(input) {
-  return result = input.toLowerCase().replace(/\ /g, "").replace(/\+/g, "");
 }
 
 function resetFields() {
