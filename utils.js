@@ -29,6 +29,9 @@ function formatVal(val, format) {
 			var mns = (val%60 < 10 ? "0" : "") + Math.round(val%60);
 			return hrs + ":" + mns;
 			break;
+		case "wikiurl" : 
+			return encodeURIComponent(val.replace(/\ +/g, "_") );
+			break;
 		default :
 			return val;
 	}	

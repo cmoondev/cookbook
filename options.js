@@ -1,4 +1,5 @@
 var basicURL = "http://www.havenandhearth.com/mt/r/gfx/invobjs/";
+var wikiURL = "http://ringofbrodgar.com/wiki/";
 var table = document.getElementById("data");
 var opts = { theme : "light", debug : false, limit : 50, textmode : false };
 var strictMatch = ["beef", "asp", "bream", "horse", "goat", "mutton", "troll", "venison", "beetroot", "ant"];

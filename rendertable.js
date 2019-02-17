@@ -374,6 +374,13 @@ function sortFloat(data, rowA, rowB, colN) {
   return ( data[rowB][colN] - data[rowA][colN] );
 }
 
+function linkWiki(inputString) {
+  var res = document.createElement("a");
+  res.innerHTML = inputString;
+  res.setAttribute("href", wikiURL + formatVal(inputString, "wikiurl"));
+  return res;
+}
+
 function renderTable(array) {
   //sorting
   var sortIndexes = [];
@@ -431,7 +438,7 @@ function renderTable(array) {
       cells[j] = document.createElement("td");
       row.appendChild(cells[j]);
     }
-    /*Food*/ cells[0].innerHTML = currentRow[0];
+    /*Food*/ cells[0].appendChild(linkWiki(currentRow[0]));
     /*Ingr*/ cells[1].appendChild(parseIng(currentRow[1]));
     /*FEPs*/ cells[2].appendChild(parseFEP(currentRow[2]));
     /* F */  cells[3].innerHTML = formatVal(currentRow[3], "d2fd");
