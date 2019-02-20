@@ -300,7 +300,9 @@ var go_inglists = {
 };
 var gl_food = [
 	//new start
+	["Kebab Meat", ["meat", "spice"],	{"con1" : 2.0}, 200.0, 1.0],
 	//new end
+
 	["Moules Frites",	["tuber", "spice"],	{"dex2" : 4, "csm1" : 3.0, "psy1" : 2.0}, 500.0, 2.0],
 	["Olive Bread",	[ "flour", "water" ],	{"str1" : 2.0, "agi2" : 2.0, "dex1" : 3.0}, 500.0, 2.0],
 	//CONSTA
@@ -727,6 +729,17 @@ var gl_food = [
 	["Wellplaiced Pie", ["water", "flour"], {"int1" : 4, "prc1" : 4, "csm1" : 2}, 600, 4]
 ];
 var gl_fepmod = [
+
+	["Kebab Meat", ["Bear"], {"con2" : 0.5, "str2" : 3}],
+	["Kebab Meat", ["Boar"], {"con2" : 1.3, "con1" : 1.6}],
+	["Kebab Meat", ["Venison"], {"con2" : 1.4, "prc1" : 1.6}],
+	["Kebab Meat", ["Moose"], {"con2" : 0.8, "int1" : 2.4}],
+	["Kebab Meat", ["Wild Beef"], {"con2" : 0.5, "str1" : 1.5}],
+	["Kebab Meat", ["Bat"], {"con2" : 1.4, "prc1" : 0.8}],
+	["Kebab Meat", ["Reindeer Venison"], {"con2" : 0.8, "dex1" : 1.8}],
+	["Kebab Meat", ["Swan"], {"con2" : 1.2, "prc2" : 1}],
+	["Kebab Meat", ["Lynx"], {"con2" : 1, "agi1" : 2}],
+
 	["Roast Boreworm", ["Kvann"], {"dex1" : 1.0, "prc1" : 0.5}], 
 	["Roast Boreworm", ["Dill"], {"dex1" : 1.0, "prc1" : 0.885}], 
 	["Roast Boreworm", ["Chives"], {"dex1" : 1.0, "prc1" : 0.5, "agi1" : 0.9541}], 
