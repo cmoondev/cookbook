@@ -3,3 +3,4 @@ tools/*.*
 *.bkp
 *-offline.*
 _unused/*.*
+w10/*.*
