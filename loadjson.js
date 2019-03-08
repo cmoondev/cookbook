@@ -29,6 +29,7 @@ function loadDataFromTables(targetArray) { //targetArray generation
        refreshView();
     }
   }
-  xmlHttpR.open("GET", "tables.json", true);
+  var dataPath = "rawdata\/" + opts.defaultData + "\/tables.json";
+  xmlHttpR.open("GET", dataPath, true);
   xmlHttpR.send();
 }
