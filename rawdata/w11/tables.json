@@ -17,7 +17,7 @@
     ["Fishwrap", ["berry", "fish", "spice"], {"int1" : 2, "prc1" : 3, "wil1" : 2}, 500, 2],
     ["Greenleaf Pie", ["flour", "salad", "water"], {"int1" : 2, "con1" : 3, "wil1" : 1}, 500, 3],
     ["Grubpie", ["water", "flour"], {"str2" : 3, "prc2" : 4, "wil2" : 4}, 600, 3],
-    ["Honey'd Bear", [], {"wil2" : 4.0, "str2" : 3.0, "con1" : 3.0}, 500.0, 2.5], 
+    ["Honey'd Bear", ["honey", "butter", "spice"], {"wil2" : 4.0, "str2" : 3.0, "con1" : 3.0}, 500.0, 2.5], 
     ["Jotun's Morsel", ["meat", "fat", "spice"], {"str1" : 4, "int2" : 2, "con1" : 4, "wil1" : 4}, 1000, 6],
     ["Kebab Meat", ["meat", "spice"],   {"con2" : 1.0, "csm1": 1.0}, 200.0, 1.0],
     ["Lingon Loaf", ["water", "flour"], {"con1" : 2, "csm1" : 2, "csm2" : 3}, 500, 3],
