@@ -15,6 +15,13 @@
 	margin: 0px !important;
 }
 
+.goatbollock 		{background-position: -270px -270px}
+.horsebollock 	{background-position: -240px -300px}
+.muttonbollock 	{background-position: -270px -300px}
+.beefbollock 		{background-position: -240px -330px}
+.porkbollock 		{background-position: -270px -330px}
+.cachalot 			{background-position: -240px -270px}
+
 .barleyflour{background-position: -150px -570px}
 .wheatflour {background-position: -180px -570px}
 
