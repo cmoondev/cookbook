@@ -327,6 +327,7 @@ var go_inglists = {
 	"water" : gl_water
 };
 var gl_food = [
+	["Chicken Salad",	["salad", "spice"],	{"con1" : 4.0, "prc1" : 4.0, "dex1" : 4.0}, 500.0, 5.0],
 	["Apple Pie", ["water", "flour", "butter"], {"con1" : 10}, 500, 3.5],
 	["Autumn Steak", ["mushroom", "meat", "salad", "spice"], {"con1" : 4, "prc1" : 3, "prc2" : 2}, 800, 3],
 	["Bark Bread", ["water", "flour"], {"con1" : 5, "wil1" : 5}, 500, 5],
@@ -384,6 +385,26 @@ var gl_food = [
 	["Zesty Brill", ["onion"], {"str1" : 4, "dex1" : 4, "wil1" : 5}, 800, 2.5]
 ];
 var gl_fepmod = [
+	["Chicken Salad", ["Beetroot Leaves", "Chives", "Chives"], {"con1" : 2.0, "prc1" : 4.0, "dex1" : 5.0, "agi1" : 12.5793}], 
+	["Chicken Salad", ["Laurel Leaves", "Beetroot Leaves", "Laurel Leaves"], {"con1" : 4.0, "prc1" : 8.64, "dex1" : 5.0}], 
+	["Chicken Salad", ["Beetroot Leaves"], {"con1" : 2.0, "prc1" : 4.0, "dex1" : 5.0}], 
+	["Chicken Salad", ["Beetroot Leaves", "Dill", "Dill"], {"con1" : 2.0, "prc1" : 4.0, "dex1" : 12.4}], 
+	["Chicken Salad", ["Lettuce Leaf", "Chives", "Chives"], {"con1" : 10.0, "prc1" : 4.0, "dex1" : 3.0, "agi1" : 19.4408}], 
+	["Chicken Salad", ["Laurel Leaves", "Lettuce Leaf", "Laurel Leaves"], {"con1" : 14.64, "prc1" : 5.32, "dex1" : 6.0}], 
+	["Chicken Salad", ["Lettuce Leaf", "Dill", "Dill"], {"con1" : 10.0, "prc1" : 4.0, "dex1" : 7.44}], 
+	["Chicken Salad", ["Beetroot Leaves", "Kvann", "Kvann"], {"con1" : 2.0, "prc1" : 5.0, "dex1" : 4.0}], 
+	["Chicken Salad", ["Green Kelp", "Chives", "Chives"], {"con1" : 2.8, "prc1" : 4.0, "dex1" : 4.0, "csm1" : 1.2, "agi1" : 13.7229}], 
+	["Chicken Salad", ["Lettuce Leaf"], {"con1" : 10.0, "prc1" : 4.0, "dex1" : 3.0}], 
+	["Chicken Salad", ["Marsh-Mallow", "Chives", "Chives"], {"con1" : 3.4, "prc1" : 4.0, "dex1" : 4.0, "agi1" : 18.1813}], 
+	["Chicken Salad", ["Green Kelp", "Laurel Leaves", "Laurel Leaves"], {"con1" : 2.8, "prc1" : 4.0, "dex1" : 4.0, "csm1" : 3.192}], 
+	["Chicken Salad", ["Laurel Leaves", "Marsh-Mallow", "Laurel Leaves"], {"con1" : 4.0, "prc1" : 9.044, "dex1" : 4.0, "agi1" : 6.384}], 
+	["Chicken Salad", ["Lettuce Leaf", "Kvann", "Kvann"], {"con1" : 10.0, "prc1" : 3.0, "dex1" : 4.0}], 
+	["Chicken Salad", ["Marsh-Mallow"], {"con1" : 3.4, "prc1" : 4.0, "dex1" : 4.0, "agi1" : 2.4}], 
+	["Chicken Salad", ["Green Kelp", "Dill", "Dill"], {"con1" : 2.8, "prc1" : 4.0, "dex1" : 9.92, "csm1" : 1.2}], 
+	["Chicken Salad", ["Marsh-Mallow", "Dill", "Dill"], {"con1" : 3.4, "prc1" : 4.0, "dex1" : 9.92, "agi1" : 2.4}], 
+	["Chicken Salad", ["Green Kelp"], {"con1" : 2.8, "prc1" : 4.0, "dex1" : 4.0, "csm1" : 1.2}], 
+	["Chicken Salad", ["Green Kelp", "Kvann", "Kvann"], {"con1" : 1.2, "prc1" : 4.0, "dex1" : 4.0, "csm1" : 2.8}], 
+	["Chicken Salad", ["Marsh-Mallow", "Kvann", "Kvann"], {"con1" : 2.4, "prc1" : 4.0, "dex1" : 4.0, "agi1" : 3.4}], 
 	["Fishpie", ["Barley Flour", "Tench", "Chicken Egg"], {"int1" : 5.0, "prc1" : 2.7, "con1" : 1.365}], 
 	["Fishpie", ["Barley Flour", "Chicken Egg", "Trout"], {"int1" : 5.0, "prc1" : 3.54, "con1" : 0.735}], 
 	["Fishpie", ["Barley Flour", "Pike", "Chicken Egg"], {"int1" : 5.0, "prc1" : 2.7, "con1" : 0.63, "str1" : 0.945}], 
