@@ -207,7 +207,8 @@ var gl_meat = [
 	"Mutton bollock",
 	"Beef bollock",
 	"Pork bollock",
-	"Cachalot"
+	"Cachalot",
+	"Bog turtle"
 ];
 var gl_meatweird = [
 	"Ant",
@@ -231,7 +232,8 @@ var gl_carcass = [
 	"Rabbit",
 	"Squirrel",
 	"Swan",
-	"Wood Grouse"
+	"Wood Grouse",
+	"Bog turtle"
 ];
 var gl_tuber = [
 	"Beetroot",
@@ -385,6 +387,16 @@ var gl_food = [
 	["Zesty Brill", ["onion"], {"str1" : 4, "dex1" : 4, "wil1" : 5}, 800, 2.5]
 ];
 var gl_fepmod = [
+	["Fishwrap", ["Laurel Leaves", "Blackcurrant", "Cave angler"], {"prc1" : 2.1, "int1" : 0.8, "wil1" : 2.68, "dex1" : 1.0, "int2" : 2.7}], 
+	["Fishwrap", ["Blackcurrant", "Chives", "Cave angler"], {"prc1" : 2.1, "int1" : 2.0, "wil1" : 0.8, "dex1" : 1.0, "agi1" : 0.2673, "int2" : 2.7}], 
+	["Fishwrap", ["Laurel Leaves", "Cave angler", "Blackberry"], {"prc1" : 3.855, "int1" : 2.0, "wil1" : 2.68, "int2" : 1.62}], 
+	["Fishwrap", ["Cave angler", "Blackberry", "Dill"], {"prc1" : 3.855, "int1" : 2.5, "wil1" : 2.0, "int2" : 1.62}], 
+	["Fishwrap", ["Blackcurrant", "Cave angler", "Dill"], {"prc1" : 2.625, "int1" : 2.0, "wil1" : 0.8, "dex1" : 1.0, "int2" : 2.7}], 
+	["Fishwrap", ["Blackcurrant", "Kvann", "Cave angler"], {"prc1" : 1.4, "int1" : 3.0, "wil1" : 0.8, "dex1" : 1.0, "int2" : 1.8}], 
+	["Fishwrap", ["Kvann", "Cave angler", "Blackberry"], {"prc1" : 2.57, "int1" : 3.0, "wil1" : 2.0, "int2" : 1.08}], 
+	["Fishwrap", ["Chives", "Cave angler", "Blackberry"], {"prc1" : 3.855, "int1" : 2.0, "wil1" : 2.0, "agi1" : 0.2751, "int2" : 1.62}], 
+	["Kebab Meat", ["Bog turtle"], {"con2" : 1.0, "csm1" : 0.75, "con1" : 0.2}], 
+
 	["Chicken Salad", ["Beetroot Leaves", "Chives", "Chives"], {"con1" : 2.0, "prc1" : 4.0, "dex1" : 5.0, "agi1" : 12.5793}], 
 	["Chicken Salad", ["Laurel Leaves", "Beetroot Leaves", "Laurel Leaves"], {"con1" : 4.0, "prc1" : 8.64, "dex1" : 5.0}], 
 	["Chicken Salad", ["Beetroot Leaves"], {"con1" : 2.0, "prc1" : 4.0, "dex1" : 5.0}], 
