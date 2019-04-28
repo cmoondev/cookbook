@@ -329,6 +329,7 @@ var go_inglists = {
 	"water" : gl_water
 };
 var gl_food = [
+	["Clambake",	["fish", "spice"],	{"csm2" : 3.0, "csm1" : 5.0, "prc1" : 5.0}, 500.0, 4.0],
 	["Candleberry", [], {"csm1" : 3.0}, 75.0, 1.0], 
 	["Steak & Tubers",	["meat", "onion", "tuber", "spice"],	{"str1" : 2.0, "con2" : 2.0, "csm1" : 2.0}, 800.0, 4.0],
 	["Chicken Salad",	["salad", "spice"],	{"con1" : 4.0, "prc1" : 4.0, "dex1" : 4.0}, 500.0, 5.0],
@@ -389,6 +390,10 @@ var gl_food = [
 	["Zesty Brill", ["onion"], {"str1" : 4, "dex1" : 4, "wil1" : 5}, 800, 2.5]
 ];
 var gl_fepmod = [
+	["Clambake", ["Laurel Leaves", "Cave angler"], {"csm2" : 2.1, "csm1" : 5.0, "prc1" : 6.2, "int2" : 2.7}], 
+	["Clambake", ["Kvann", "Cave angler"], {"csm2" : 3.5, "csm1" : 5.0, "prc1" : 3.0, "int2" : 4.5}], 
+	["Clambake", ["Chives", "Cave angler"], {"csm2" : 2.1, "csm1" : 5.0, "prc1" : 5.0, "agi1" : 0.1797, "int2" : 2.7}], 
+	["Clambake", ["Cave angler", "Dill"], {"csm2" : 2.1, "csm1" : 5.0, "prc1" : 5.0, "int2" : 3.105}], 
 	["Steak & Tubers", ["Laurel Leaves", "Leek", "Beef", "Cavebulb"], {"str1" : 2.25, "con2" : 1.716, "csm1" : 1.5, "prc1" : 0.9653, "psy1" : 2.1437}], 
 	["Steak & Tubers", ["Yellow Onion", "Beef", "Cavebulb"], {"str1" : 1.8, "con2" : 1.5, "csm1" : 2.175, "psy1" : 1.825}], 
 	["Steak & Tubers", ["Laurel Leaves", "Beef", "Red Onion", "Cavebulb"], {"str1" : 3.0, "con2" : 2.145, "csm1" : 1.2, "psy1" : 2.115}], 
