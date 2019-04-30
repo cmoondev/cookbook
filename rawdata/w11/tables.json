@@ -62,6 +62,10 @@
  ],
 
  "gl_fepmod" : [
+  ["Steak & Tubers", ["Leek", "Cavebulb", "Troll"], {"str1" : 1.2, "con2" : 8.0, "csm1" : 1.5, "con1" : 0.675, "psy1" : 1.625}], 
+  ["Steak & Tubers", ["Yellow Onion", "Cavebulb", "Troll"], {"str1" : 1.2, "con2" : 1.5, "csm1" : 2.175, "psy1" : 1.625, "psy2" : 6.5}], 
+  ["Steak & Tubers", ["Leek", "Beetroot", "Troll"], {"str1" : 1.6, "con2" : 1.7, "csm1" : 2.8, "con1" : 0.9, "psy2" : 7.0}], 
+  ["Autumn Steak", ["Driftkelp", "Troll", "Troll Mushrooms"], {"prc2" : 1.5, "prc1" : 9.0, "con1" : 12.0, "agi2" : 6.75, "psy1" : 7.5, "psy2" : 27.0}],
   ["Clambake", ["Laurel Leaves", "Cave angler"], {"csm2" : 2.1, "csm1" : 5.0, "prc1" : 6.2, "int2" : 2.7}], 
   ["Clambake", ["Kvann", "Cave angler"], {"csm2" : 3.5, "csm1" : 5.0, "prc1" : 3.0, "int2" : 4.5}], 
   ["Clambake", ["Chives", "Cave angler"], {"csm2" : 2.1, "csm1" : 5.0, "prc1" : 5.0, "agi1" : 0.1797, "int2" : 2.7}], 
