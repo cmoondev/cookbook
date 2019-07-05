@@ -434,7 +434,6 @@ var gl_food = [
 	["Generic Gouda", [], {"con2" : 3.0, "wil1" : 2.0}, 100.0, 4.0], 
 	["Cow's Curd", [], {"str1" : 1.0}, 50.0, 4.0], 
 	["Creamy Camembert", [], {"agi2" : 5.0, "csm1" : 4.0}, 100.0, 4.0], 
-
 	["Beeted Bird Breast", ["poultry", "fat"], {"con2" : 8.0, "csm1" : 8.0, "psy1" : 8.0}, 750.0, 5.0],
 	["Baked Birchbark Bream", ["onion"], {"int1" : 6.0, "csm1" : 6.0, "dex1" : 5.0}, 600.0, 3.0],
 	["Birchbark Bream", ["onion"], {"int1" : 5.0, "csm1" : 5.0, "dex1" : 4.0}, 400.0, 3.0],
@@ -574,6 +573,14 @@ var gl_food = [
 	["Zesty Brill", ["onion"], {"str1" : 4, "dex1" : 4, "wil1" : 5}, 800, 2.5]
 ];
 var gl_fepmod = [
+	["Kebab Meat", ["Venison"], {"con2" : 0.7, "csm1" : 1.0, "prc1" : 0.8}], 
+	["Kebab Meat", ["Goat"], {"con2" : 0.5, "csm1" : 1.0, "wil2" : 1.0}], 
+	["Kebab Meat", ["Mutton"], {"con2" : 0.5, "csm1" : 1.0, "dex1" : 1.0}], 
+	["Kebab Meat", ["Fox"], {"con2" : 1.0, "csm1" : 0.7, "prc1" : 0.6}], 
+	["Kebab Meat", ["Beef"], {"con2" : 0.5, "csm1" : 1.0, "str1" : 1.0}], 
+	["Kebab Meat", ["Bear"], {"con2" : 0.25, "csm1" : 1.0, "str2" : 1.5}], 
+	["Kebab Meat", ["Moose"], {"con2" : 0.4, "csm1" : 1.0, "int1" : 1.2}], 
+	["Kebab Meat", ["Chicken"], {"con2" : 1.0, "csm1" : 1.0}],
 	["Wellplaiced Pie", ["Chicken Egg", "Millet Flour"], {"int1" : 4.8, "prc1" : 5.0, "csm1" : 3.0, "wil1" : 2.1}], 
 	["Wellplaiced Pie", ["Barley Flour", "Chicken Egg"], {"int1" : 6.0, "prc1" : 5.0, "csm1" : 3.75}], 
 	["Wellplaiced Pie", ["Chicken Egg", "Wheat Flour"], {"int1" : 4.8, "prc1" : 5.0, "csm1" : 3.0, "con1" : 3.6}], 
