@@ -1,10 +1,8 @@
-body
-{
+body {
 	background-color: #000;
 }
 
-body *
-{
+body * {
 	background: none;
 	font-family: sans-serif;
 }
@@ -25,58 +23,44 @@ a:hover {
 	border-radius: 5px;
 }
 
-#pageHeader, #pageBottom
-{
+#pageHeader, #pageBottom {
 	position: fixed;
 	z-index: 2;
 	overflow: hidden;
-	left:0px;
+	left: 0px;
 	width: 100%;	
 }
 
-#pageHeader 
-{
+#pageHeader {
 	top: 0px;
 }
 
-#pageBottom 
-{
+#pageBottom {
 	bottom: 0px;
 }
 
-#data-headers
-{
-	height: 28px;
-	width: 800px;
-	margin: 4px auto 0px auto;
+#data-headers, #data-container, #filters {
+	width: 890px;
 }
 
-	#data-headers>*
-	{
+#data-headers {
+	height: 24px;
+	margin: 8px auto 0px auto;
+}
+
+	#data-headers>*	{
 		display: inline-block;
 		text-align: center !important;
 		height: 100%;
 		float: left;
 	}
 	
-	#data-headers .hdr, #data-headers .sorttable_nosort
-	{
+	#data-headers .hdr {
 		font-size: 12pt;
 	}
 
-	#data-headers .hdr 
-	{
+	#data-headers .hdr {
 		cursor: pointer;
-	}
-
-	#data-headers .sorttable_sorted, #data-headers .sorttable_sorted_reverse
-	{
-		font-weight: bold;
-	}
-
-	#data-headers span#sorttable_sortfwdind, #data-headers span#sorttable_sortrevind 
-	{
-		display: none;
 	}
 
 	span.sublabel {
@@ -87,125 +71,106 @@ a:hover {
 		margin: auto;
 	}
 
-#data-container 
-{
+#data-container {
 	padding-top: 32px;
 	padding-bottom: 110px;
-	width: 800px;
 	margin: 0px auto 0px auto;
 }
 
-#data
-{
+#data {
 	width: 100%;
 	border: none;
 	border-collapse: collapse;
 	font-size: 10.0pt;
 }
 
-#data *
-{
+#data * {
 	margin: 0px;
 	padding: 0px;
 }
 
-#data tbody td *
-{
+#data tbody td * {
 	vertical-align: middle;
 }
 
-#data tr td
-{
+#data tr td {
 	height: 32px;
 }
 
 
-#data-headers div:nth-child(1)
-{
-	width: 170px;
+#data td:nth-child(1), #data-headers div:nth-child(1) {
+	width: 230px;
 }
 
-#data td:nth-child(1)
-{
-	width: 170px;
-	word-spacing: -0.12em;
-	letter-spacing: -0.018em;
+#data td:nth-child(1) {
+	word-spacing: -0.10em;
+	letter-spacing: -0.010em;
 	line-height: 13px;
 	padding-left: 4px;
 	padding-right: 4px;
 }
 
-#data td:nth-child(2), #data-headers div:nth-child(2)
-{
-	width: 160px;
+#data td:nth-child(2), #data-headers div:nth-child(2) {
+	width: 190px;
 }
 
-#data td:nth-child(2)
-{
+#data td:nth-child(2) {
 	text-align: center;
-	width: 160px;
 	line-height: 10pt;
 	font-size: 8pt;
 }
 
-#data td:nth-child(3), #data-headers div:nth-child(3)
-{
+#data td:nth-child(3), #data-headers div:nth-child(3) {
 	width: 325px;
 }
 
 #data td:nth-child(4), #data-headers div:nth-child(4),
 #data td:nth-child(5), #data-headers div:nth-child(5),
 #data td:nth-child(6), #data-headers div:nth-child(6),
-#data td:nth-child(7), #data-headers div:nth-child(7)
-{
+#data td:nth-child(7), #data-headers div:nth-child(7) {
 	width: 36px;
 	text-align: center;
 }
 
 #data .fep-list {
 	width: 325px;
-	overflow-y: hidden;
 }
 
-#data .fep-single
-{
+#data .fep-single {
 	width: 36px !important; 
 	height: 32px !important; 
 	float: left;
 	vertical-align: middle !important;
 	text-align: center;
-	}
+}
 
-.fep-single *{
+.fep-single * {
 	word-spacing: -0.36em;
 	letter-spacing: -0.080em;
 	display: block;
 	font-family: 'droid_sans_monoregular', monospace;
-
 }
 
-.fep-single .fep-name{
+.fep-single .fep-name {
 	position: relative;
 	top: 14px;
 	font-size: 8.5pt;
 }
 
-.fep-single .fep-value{
+.fep-single .fep-value {
 	position: relative;
 	top: -14px;
 	font-size: 10pt;
 	font-weight: bold;
 }
 
-#data .ing-list
-{
+#data .ing-list {
 	display: block;
 	padding-left: 4px;
 	padding-right: 4px;
 }
 
-#data .ing-single
-{
+#data .ing-single {
 	float: left;
 	vertical-align: middle !important;
 	word-spacing: -0.09em;
@@ -240,8 +205,8 @@ a:hover {
 }
 
 #pagination .separator {
-	font-size: 75%;
-	margin: 0ex 1ex 0ex 1ex;
+	font-size: 60%;
+	margin: 0ex 0.5ex 0ex 0.5ex;
 }
 
 /* ------------------------------------*/
@@ -249,12 +214,10 @@ a:hover {
 /* ------------------------------------*/
 
 #filters {
-	width: 800px;
 	margin: 0px auto 0px auto;
 }
 
-#filters *
-{
+#filters * {
 	margin: 0px; 
 	padding: 0px;
 	z-index: 4;	
@@ -263,13 +226,12 @@ a:hover {
 	vertical-align: middle;
 }
 
-#filters>*
-{
+#filters>* {
 	display: inline-block;
 	height: 72px;
 }
 
-#button_left, #button_right{
+#button_left, #button_right {
 	width: 72px;
 }
 
@@ -280,11 +242,14 @@ a:hover {
 }
 
 #fields_middle {
-	width: 640px;
+	width: 736px;
+}
+
+#filterFood, #filterIng {
+	width: 360px;
 }
 
 #filterFood, #filterIng, #filterFEP {
-	width: 312px;
 	height: 16pt;
 	margin-right: 4px;
 	margin-top: 8px;
@@ -293,5 +258,5 @@ a:hover {
 }
 
 #filterFEP {
-	width: 632px;
+	width: 734px;
 }

@@ -460,7 +460,6 @@ var gl_food = [
 	["Dried Filet of Cave Angler", [], {"str1" : 9.0}, 250.0, 2.0], 
 	["Zamorano", [], {"str2" : 3.0, "agi2" : 3.0, "psy2" : 3.0}, 100.0, 4.0], 
 	["Beaver Delights", [], {"int2" : 15.0, "prc2" : 15.0}, 250.0, 2.0], 
-	["Curd", [], {"str1" : 1.0}, 50.0, 4.0], 
 	["Generic Gouda", [], {"con2" : 3.0, "wil1" : 2.0}, 100.0, 4.0], 
 	["Cow's Curd", [], {"str1" : 1.0}, 50.0, 4.0], 
 	["Creamy Camembert", [], {"agi2" : 5.0, "csm1" : 4.0}, 100.0, 4.0], 
