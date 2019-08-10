@@ -624,6 +624,7 @@ var gl_food = [
  ["Zesty Brill", ["onion"], {"str1" : 4, "dex1" : 4, "wil1" : 5}, 800, 2.5]
 ];
 var gl_fepmod = [
+
  ["Birthday Cake", ["Barley Flour", "Cowsmilk", "Domestic Honey", "Cowsmilk"], {"csm2" : 6.6, "psy2" : 4.95, "str1" : 0.9625, "con1" : 10.5875}], 
  ["Birthday Cake", ["Barley Flour", "Cowsmilk", "Domestic Honey"], {"csm2" : 9.9, "psy2" : 4.95, "str1" : 1.4437, "con1" : 5.2938}], 
  ["Birthday Cake", ["Barley Flour", "Cowsmilk", "Goatsmilk", "Domestic Honey"], {"csm2" : 7.425, "psy2" : 4.95, "str1" : 1.0828, "con1" : 5.2938, "dex1" : 3.9703}], 
@@ -3307,6 +3308,7 @@ var gl_fepmod = [
  ["Butter-Chived Trout", ["Goatsmilk"], {"str1" : 2.25, "int2" : 4.0, "prc1" : 3.75, "wil1" : 2.8}],
  ["Butter-Chived Trout", ["Sheepsmilk"], {"str1" : 2.25, "int2" : 4.0, "prc1" : 3.75, "dex1" : 2.8}], 
  ["Butter-Chived Trout", [], {"str1" : 3, "int2" : 4, "prc1" : 5}],
+ ["Buttered Leeks", [], {"wil2" : 3.0, "con1" : 3.0}],
  ["Buttered Leeks", ["Cowsmilk"], {"wil2" : 2.25, "con1" : 2.25, "str1" : 2.1}], 
  ["Buttered Leeks", ["Goatsmilk"], {"wil2" : 2.25, "con1" : 2.25, "wil1" : 2.1}], 
  ["Buttered Leeks", ["Sheepsmilk"], {"wil2" : 2.25, "con1" : 2.25, "dex1" : 2.1}], 

@@ -281,6 +281,7 @@
  ["Zesty Brill", ["onion"], {"str1" : 4, "dex1" : 4, "wil1" : 5}, 800, 2.5]
 ],
 "gl_fepmod" : [
+ ["Buttered Leeks", [], {"wil2" : 3.0, "con1" : 3.0}],	
  ["Birthday Cake", ["Barley Flour", "Cowsmilk", "Domestic Honey", "Cowsmilk"], {"csm2" : 6.6, "psy2" : 4.95, "str1" : 0.9625, "con1" : 10.5875}], 
  ["Birthday Cake", ["Barley Flour", "Cowsmilk", "Domestic Honey"], {"csm2" : 9.9, "psy2" : 4.95, "str1" : 1.4437, "con1" : 5.2938}], 
  ["Birthday Cake", ["Barley Flour", "Cowsmilk", "Goatsmilk", "Domestic Honey"], {"csm2" : 7.425, "psy2" : 4.95, "str1" : 1.0828, "con1" : 5.2938, "dex1" : 3.9703}], 
