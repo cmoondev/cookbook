@@ -1,5 +1,6 @@
 {
 "gl_food" : [
+ ["Ring of Brodgar (Seafood)", ["fat"], {"agi2" : 3.0, "prc1" : 2.0, "psy1" : 4.0}, 750.0, 3.0], 
  ["Chewy Chevon",	["chevon", "tuber", "spice"],	{"agi2" : 3, "con1" : 3, "wil1" : 2}, 500.0, 2.0],
  ["Halloumi", [], {"con1" : 3.0, "int1" : 3.0, "dex1" : 3.0}, 100.0, 4.0], 
  ["Marrow Roast", ["meat"], {"csm2" : 4, "con1" : 3, "wil1" : 2}, 800.0, 3.0],
