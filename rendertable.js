@@ -1,7 +1,6 @@
 var displayData = [];
 var staticData = [];
 var PageState = {
-  "HideIndex" : 6,
   "PageNumber" : 1, //starts with 1
   "Sorting" : {
     "col" : "food",
@@ -131,6 +130,43 @@ function parseIng(arrIng) {
     dvI.appendChild(tnIng);
     result.appendChild(dvI);
   }
+  return result;
+}
+
+function parseSat(arr) {
+  var result = document.createElement("div");
+  result.className = "sat-list";
+  if (!arr) return result;
+  for (var i = 0; i < arr.length; i++) {
+    var sat = arr[i];
+    var sat_single = document.createElement("div");
+
+    var satN = document.createElement("span");
+    satN.innerHTML = sat["n"] + " ";
+    satN.title = sat["n"];
+    satN.classList.add("sat-name");
+    satN.classList.add(formatVal(sat["n"], "aztext"));
+    sat_single.appendChild(satN);
+
+    var satE = document.createElement("span");
+    satE.innerHTML = sat["e"];
+    satE.classList.add("sat-e");
+    sat_single.appendChild(satE);
+
+    var satD = document.createElement("span");
+    satD.innerHTML = "×";
+    satD.classList.add("sat-d");
+    sat_single.appendChild(satD);    
+
+    var satC = document.createElement("span");
+    satC.innerHTML = sat["c"] + " ";
+    satC.classList.add("sat-c");
+    sat_single.appendChild(satC);
+
+    sat_single.classList.add("sat-single");
+    result.appendChild(sat_single);
+  }
+  result.title = "Effect × Chance";
   return result;
 }
 
@@ -356,7 +392,7 @@ function prepareData(array, target) {
     }
 
     if (exclude == false) {
-      temp.push([ array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], calcP(array[i][2], PageState.SearchRequest.FEPs[PageState.SearchRequest.FEPs.length-1].atrName)]);
+      temp.push([ array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], calcP(array[i][2], PageState.SearchRequest.FEPs[PageState.SearchRequest.FEPs.length-1].atrName), array[i][6]]);
     }
   }
   return temp;
@@ -434,7 +470,7 @@ function renderTable(array) {
 
     var row = document.createElement("tr");
     var cells = [];
-    for (var j = 0; j <= 6; j++) {
+    for (var j = 0; j <= 7; j++) {
       cells[j] = document.createElement("td");
       row.appendChild(cells[j]);
     }
@@ -445,6 +481,7 @@ function renderTable(array) {
     /* H */  cells[4].innerHTML = currentRow[4];
     /*F/H*/  cells[5].innerHTML = formatVal(currentRow[5], "d2fd");
     /*FEP%*/ cells[6].innerHTML = formatVal(currentRow[6], "d2pp");
+    /*Sats*/ cells[7].appendChild(parseSat(currentRow[7]));
 
     cells[0].classList.add( "_" + formatVal(currentRow[0], "aztext") );
     cells[0].classList.add("food-name");
@@ -585,6 +622,11 @@ function applyTheme() {
     foodIconStyle.rel = "stylesheet";
     foodIconStyle.href = "gfx/food.css";
     document.head.appendChild(foodIconStyle);
+
+    var satIconStyle = document.createElement("link");
+    satIconStyle.rel = "stylesheet";
+    satIconStyle.href = "gfx/satiation.css";
+    document.head.appendChild(satIconStyle);
   }
 
   var themeStyle = document.createElement("link");

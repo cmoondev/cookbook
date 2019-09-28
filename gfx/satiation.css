@@ -1,0 +1,50 @@
+.sat-list {
+	text-align: center;
+}
+
+.sat-single {
+	display: inline-block !important;
+	width: 50px;
+}
+
+.sat-single *{
+	margin: 0px !important;
+	padding-left: 0px !important;
+}
+
+.sat-e, .sat-d, .sat-c {
+	display: block;
+	width: 15px;
+	text-align: center;
+}
+
+.sat-name {
+	background-image: url("satiation.png");
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
+	text-indent: -100pt;
+	padding-right: 2px;
+}
+
+.sat-name.berries {background-position: -60px -30px}
+.sat-name.bread {background-position: -90px -30px}
+.sat-name.cheese {background-position: -120px -30px}
+
+.sat-name.creepiescrawlies {background-position: 0px -60px}
+.sat-name.dairy {background-position: -30px -60px}
+.sat-name.fish {background-position: -60px -60px}
+.sat-name.food {background-position: -90px -60px}
+.sat-name.forage {background-position: -120px -60px}
+
+.sat-name.fruit {background-position: 0px -90px}
+.sat-name.game {background-position: -30px -90px}
+.sat-name.meat {background-position: -60px -90px}
+.sat-name.mushrooms {background-position: -90px -90px}
+.sat-name.nutsseeds {background-position: -120px -90px}
+
+.sat-name.offal {background-position: 0px -120px}
+.sat-name.fowlpoultry {background-position: -30px -120px}
+.sat-name.sausage {background-position: -60px -120px}
+.sat-name.sweetsdesserts {background-position: -90px -120px}
+.sat-name.vegetables {background-position: -120px -120px}

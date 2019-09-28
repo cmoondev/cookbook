@@ -40,7 +40,7 @@ a:hover {
 }
 
 #data-headers, #data-container, #filters {
-	width: 890px;
+	width: 1040px;
 }
 
 #data-headers {
@@ -132,6 +132,10 @@ a:hover {
 	text-align: center;
 }
 
+#data td:nth-child(8), #data-headers div:nth-child(8) {
+	width: 150px;
+}
+
 #data .fep-list {
 	width: 325px;
 }
@@ -180,6 +184,31 @@ a:hover {
 	font-family: 'SourceSansProRegular', sans-serif;
 	font-size: 9pt;
 }
+
+#data .sat-list {
+	width: 150px;
+	display: block;
+}
+
+#data .sat-single>*{
+	float: left;
+	word-spacing: -0.05em;
+	letter-spacing: -0.023em;
+	padding-left: 4px;
+	line-height: 7.0pt;
+	font-family: 'SourceSansProRegular', sans-serif;
+	font-size: 10pt;
+}
+
+#data .sat-single {
+	clear: both;
+}
+
+.sat-d {
+	font-size: 6pt !important;
+	padding-top: 0.75pt !important;
+}
+
 
 /* ------------------------------------*/
 /* ----------- 	Pagination 	---------- */
