@@ -192,12 +192,10 @@ a:hover {
 
 #data .sat-single>*{
 	float: left;
-	word-spacing: -0.05em;
-	letter-spacing: -0.023em;
-	padding-left: 4px;
-	line-height: 7.0pt;
+	padding-left: 2px;
+	line-height: 7pt;
 	font-family: 'SourceSansProRegular', sans-serif;
-	font-size: 10pt;
+	font-size: 9pt;
 }
 
 #data .sat-single {
@@ -206,7 +204,8 @@ a:hover {
 
 .sat-d {
 	font-size: 6pt !important;
-	padding-top: 0.75pt !important;
+	padding-top: 0.4pt !important;
+	line-height: 6pt !important;
 }
 
 
@@ -271,11 +270,13 @@ a:hover {
 }
 
 #fields_middle {
-	width: 736px;
+	/*width: 736px;*/
+	width: 886px;
 }
 
 #filterFood, #filterIng {
-	width: 360px;
+	/*width: 360px;*/
+	width: 435px;
 }
 
 #filterFood, #filterIng, #filterFEP {
@@ -287,5 +288,6 @@ a:hover {
 }
 
 #filterFEP {
-	width: 734px;
+	/*width: 734px;*/
+	width: 884px;
 }

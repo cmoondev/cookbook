@@ -456,7 +456,7 @@ var gl_sat = {
  "Steak & Tubers" :  [{"n" : "Vegetables", "e" : 30, "c" : 30}, {"n" : "Meat", "e" : 15, "c" : 15}],
  "Stinging Salad" :  [{"n" : "Vegetables", "e" : 32, "c" : 25}, {"n" : "Forage", "e" : 20, "c" : 20}],
  "Strawberries in Cream" :  [{"n" : "Sweets & Desserts", "e" : 30, "c" : 20}, {"n" : "Dairy", "e" : 20, "c" : 30}],
- "Strawberry" :  [{"n" : "Berries", "e" : 5, "c" : 20}],
+ "Strawberries" :  [{"n" : "Berries", "e" : 5, "c" : 20}],
  "Strawberry Cake" :  [{"n" : "Berries", "e" : 20, "c" : 35}],
  "Sunlit Stilton" :  [{"n" : "Cheese", "e" : 30, "c" : 35}],
  "Swan Neck" :  [{"n" : "Sausage", "e" : 30, "c" : 15}, {"n" : "Fowl & Poultry", "e" : 30, "c" : 15}],

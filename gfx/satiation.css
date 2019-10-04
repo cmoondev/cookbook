@@ -16,6 +16,7 @@
 	display: block;
 	width: 15px;
 	text-align: center;
+	
 }
 
 .sat-name {
@@ -23,7 +24,7 @@
 	width: 30px;
 	height: 30px;
 	overflow: hidden;
-	text-indent: -100pt;
+	text-indent: -500pt;
 	padding-right: 2px;
 }
 
