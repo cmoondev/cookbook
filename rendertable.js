@@ -658,7 +658,7 @@ function processQuery() { //parses additional options from URL string
 
   if (optionlist.theme == "dark") opts.theme = "dark";   
 
-  if (optionlist.source == "w11") opts.defaultData = "w11";
+  if (optionlist.source == "w10") opts.defaultData = "w10";
 
   if (optionlist.limit) {
     var limitNum = parseInt(optionlist.limit);
