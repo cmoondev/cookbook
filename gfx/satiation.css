@@ -4,7 +4,8 @@
 
 .sat-single {
 	display: inline-block !important;
-	width: 50px;
+	/*width: 50px;*/
+	width: 30px;
 }
 
 .sat-single *{
@@ -12,12 +13,13 @@
 	padding-left: 0px !important;
 }
 
+/*
 .sat-e, .sat-d, .sat-c {
 	display: block;
 	width: 15px;
 	text-align: center;
-	
 }
+*/
 
 .sat-name {
 	background-image: url("satiation.png");
@@ -25,7 +27,7 @@
 	height: 30px;
 	overflow: hidden;
 	text-indent: -500pt;
-	padding-right: 2px;
+	/*padding-right: 2px;*/
 }
 
 .sat-name.berries {background-position: -60px -30px}

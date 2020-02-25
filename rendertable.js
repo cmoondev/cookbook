@@ -148,6 +148,7 @@ function parseSat(arr) {
     satN.classList.add(formatVal(sat["n"], "aztext"));
     sat_single.appendChild(satN);
 
+/*
     var satE = document.createElement("span");
     satE.innerHTML = sat["e"];
     satE.classList.add("sat-e");
@@ -162,11 +163,11 @@ function parseSat(arr) {
     satC.innerHTML = sat["c"] + " ";
     satC.classList.add("sat-c");
     sat_single.appendChild(satC);
-
+*/
     sat_single.classList.add("sat-single");
     result.appendChild(sat_single);
   }
-  result.title = "Effect × Chance";
+  // result.title = "Effect × Chance";
   return result;
 }
 

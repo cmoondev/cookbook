@@ -192,7 +192,7 @@ a:hover {
 
 #data .sat-single>*{
 	float: left;
-	padding-left: 2px;
+	/*padding-left: 2px;*/
 	line-height: 7pt;
 	font-family: 'SourceSansProRegular', sans-serif;
 	font-size: 9pt;
@@ -200,13 +200,18 @@ a:hover {
 
 #data .sat-single {
 	clear: both;
+	margin-left: 1px;
+	margin-right: 1px;
 }
 
+/*
 .sat-d {
 	font-size: 6pt !important;
 	padding-top: 0.4pt !important;
 	line-height: 6pt !important;
 }
+
+*/
 
 
 /* ------------------------------------*/
